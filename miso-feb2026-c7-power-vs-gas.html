@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Implied heat rates hit 27.6 MMBtu/MWh on February 2, signaling extreme scarcity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.0/plotly.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #FFFFFF;
+      padding: 24px 32px 16px 32px;
+      max-width: 960px;
+    }
+    .chart-header {
+      margin-bottom: 8px;
+    }
+    .chart-title {
+      font-size: 20px;
+      font-weight: 400;
+      color: #1B2A4A;
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+    .chart-subtitle {
+      font-size: 14px;
+      font-weight: 400;
+      color: #5A6570;
+      line-height: 1.4;
+    }
+    #plotly-chart {
+      width: 100%;
+      height: 450px;
+    }
+    .chart-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      padding-top: 8px;
+    }
+    .chart-source {
+      font-size: 11px;
+      color: #8E99A4;
+    }
+    .chart-wordmark {
+      font-size: 11px;
+      font-weight: 700;
+      color: #1B2A4A;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="chart-header">
+    <div class="chart-title">Implied heat rates hit 27.6 MMBtu/MWh on February 2, signaling extreme scarcity</div>
+    <div class="chart-subtitle">Indiana Hub day-ahead LMP ($/MWh) vs Henry Hub gas price ($/MMBtu), February 2026</div>
+  </div>
+  <div id="plotly-chart"></div>
+  <div class="chart-footer">
+    <span class="chart-source">Source: MISO, CME Group, Modo Energy</span>
+    <span class="chart-wordmark">MODO ENERGY</span>
+  </div>
+  <script>
+    var chartData = [{"hovertemplate": "DA: $%{y:.1f}/MWh", "line": {"color": "#6F5FE5", "width": 2.5}, "mode": "lines", "name": "DA LMP ($/MWh)", "x": ["2026-02-01T00:00:00", "2026-02-02T00:00:00", "2026-02-03T00:00:00", "2026-02-04T00:00:00", "2026-02-05T00:00:00", "2026-02-06T00:00:00", "2026-02-07T00:00:00", "2026-02-08T00:00:00", "2026-02-09T00:00:00", "2026-02-10T00:00:00", "2026-02-11T00:00:00", "2026-02-12T00:00:00", "2026-02-13T00:00:00", "2026-02-14T00:00:00", "2026-02-15T00:00:00", "2026-02-16T00:00:00", "2026-02-17T00:00:00", "2026-02-18T00:00:00", "2026-02-19T00:00:00", "2026-02-20T00:00:00", "2026-02-21T00:00:00", "2026-02-22T00:00:00", "2026-02-23T00:00:00", "2026-02-24T00:00:00", "2026-02-25T00:00:00", "2026-02-26T00:00:00", "2026-02-27T00:00:00", "2026-02-28T00:00:00"], "y": [113.9166666666667, 121.3991666666667, 91.29333333333334, 80.39375, 74.48875, 62.23583333333334, 81.75208333333333, 83.20125, 63.26666666666667, 37.37833333333334, 40.16791666666666, 44.73125, 39.10833333333333, 35.35125, 33.19208333333334, 33.01416666666667, 35.9975, 29.64625, 30.43041666666667, 28.40041666666667, 31.80291666666666, 31.71083333333333, 43.02708333333334, 47.69208333333333, 35.715, 36.21625, 27.93833333333333, 29.90833333333333], "type": "scatter", "xaxis": "x", "yaxis": "y"}, {"hovertemplate": "RT: $%{y:.1f}/MWh", "line": {"color": "#E03F61", "width": 2.5}, "mode": "lines", "name": "RT LMP ($/MWh)", "x": ["2026-02-01T00:00:00", "2026-02-02T00:00:00", "2026-02-03T00:00:00", "2026-02-04T00:00:00", "2026-02-05T00:00:00", "2026-02-06T00:00:00", "2026-02-07T00:00:00", "2026-02-08T00:00:00", "2026-02-09T00:00:00", "2026-02-10T00:00:00", "2026-02-11T00:00:00", "2026-02-12T00:00:00", "2026-02-13T00:00:00", "2026-02-14T00:00:00", "2026-02-15T00:00:00", "2026-02-16T00:00:00", "2026-02-17T00:00:00", "2026-02-18T00:00:00", "2026-02-19T00:00:00", "2026-02-20T00:00:00", "2026-02-21T00:00:00", "2026-02-22T00:00:00", "2026-02-23T00:00:00", "2026-02-24T00:00:00", "2026-02-25T00:00:00", "2026-02-26T00:00:00", "2026-02-27T00:00:00", "2026-02-28T00:00:00"], "y": [201.3516666666667, 195.5779166666667, 79.6075, 75.86208333333333, 116.5579166666667, 82.49708333333334, 42.85083333333333, 40.4025, 71.25041666666667, 28.64041666666667, 28.54958333333333, 37.6025, 44.85166666666667, 34.75333333333334, 32.43, 41.1625, 40.81875, 25.8325, 28.3675, 25.49666666666667, 29.61958333333333, 31.43208333333333, 43.32041666666667, 51.47416666666666, 32.22708333333333, 133.0382894736842, 31.41135416666667, 25.50302083333333], "type": "scatter", "xaxis": "x", "yaxis": "y"}, {"hovertemplate": "Gas: $%{y:.2f}/MMBtu", "line": {"color": "#E59C58", "width": 2.5}, "mode": "lines", "name": "Henry Hub ($/MMBtu)", "x": ["2026-02-02T00:00:00", "2026-02-03T00:00:00", "2026-02-04T00:00:00", "2026-02-05T00:00:00", "2026-02-06T00:00:00", "2026-02-07T00:00:00", "2026-02-08T00:00:00", "2026-02-09T00:00:00", "2026-02-10T00:00:00", "2026-02-11T00:00:00", "2026-02-12T00:00:00", "2026-02-13T00:00:00", "2026-02-14T00:00:00", "2026-02-15T00:00:00", "2026-02-16T00:00:00", "2026-02-17T00:00:00", "2026-02-18T00:00:00", "2026-02-19T00:00:00", "2026-02-20T00:00:00", "2026-02-21T00:00:00", "2026-02-22T00:00:00", "2026-02-23T00:00:00", "2026-02-24T00:00:00", "2026-02-25T00:00:00", "2026-02-26T00:00:00", "2026-02-27T00:00:00", "2026-02-28T00:00:00"], "y": [4.4, 4.11, 6.88, 5.28, 4.37, 4.37, 4.37, 3.25, 3.18, 3.25, 3.43, 3.24, 3.24, 3.24, 3.24, 3.13, 2.98, 3.09, 3.15, 3.15, 3.15, 3.13, 3.13, 3.13, 3.13, 3.13, 3.13], "type": "scatter", "xaxis": "x", "yaxis": "y2"}];
+    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 12}, "hoverlabel": {"bgcolor": "#FFFFFF", "bordercolor": "#D0D0D0", "font": {"family": "DM Sans, sans-serif", "size": 12}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 11}, "orientation": "h", "x": 0.5, "xanchor": "center", "y": -0.12, "yanchor": "top"}, "margin": {"b": 60, "l": 60, "r": 20, "t": 20}, "paper_bgcolor": "#FFFFFF", "plot_bgcolor": "#FFFFFF", "xaxis": {"linecolor": "#D0D0D0", "linewidth": 1, "showgrid": false, "showline": true, "tickfont": {"color": "#5A6570", "size": 11}, "tickformat": "%-d %b"}, "yaxis": {"gridcolor": "#F0F0F0", "gridwidth": 0.4, "linecolor": "#D0D0D0", "linewidth": 1, "separatethousands": true, "showgrid": true, "showline": true, "tickfont": {"color": "#5A6570", "size": 11}, "zeroline": false}}}, "xaxis": {"anchor": "y", "domain": [0.0, 0.94], "tickformat": "%-d %b", "dtick": 604800000, "showgrid": false, "showline": true, "linecolor": "#D0D0D0"}, "yaxis": {"anchor": "x", "domain": [0.0, 1.0], "title": {"text": "LMP ($/MWh)"}, "showgrid": true, "gridcolor": "#F0F0F0", "tickprefix": "$"}, "yaxis2": {"anchor": "x", "overlaying": "y", "side": "right", "title": {"text": "Gas price ($/MMBtu)"}, "showgrid": false, "tickprefix": "$"}, "margin": {"l": 60, "r": 60, "t": 20, "b": 60}, "hovermode": "x unified"};
+    var chartConfig = {
+      displayModeBar: false,
+      responsive: true,
+      staticPlot: false
+    };
+    Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig);
+  </script>
+</body>
+</html>
