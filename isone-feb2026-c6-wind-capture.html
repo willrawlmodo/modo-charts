@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wind's capture rate hit <b>109%</b> as output correlated with the highest-priced hours</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.0/plotly.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #FFFFFF;
+      padding: 24px 32px 16px 32px;
+      max-width: 960px;
+    }
+    .chart-header {
+      margin-bottom: 8px;
+    }
+    .chart-title {
+      font-size: 20px;
+      font-weight: 400;
+      color: #1B2A4A;
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+    .chart-subtitle {
+      font-size: 14px;
+      font-weight: 400;
+      color: #5A6570;
+      line-height: 1.4;
+    }
+    #plotly-chart {
+      width: 100%;
+      height: 450px;
+    }
+    .chart-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      padding-top: 8px;
+    }
+    .chart-source {
+      font-size: 11px;
+      color: #8E99A4;
+    }
+    .chart-wordmark {
+      font-size: 11px;
+      font-weight: 700;
+      color: #1B2A4A;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="chart-header">
+    <div class="chart-title">Wind's capture rate hit <b>109%</b> as output correlated with the highest-priced hours</div>
+    <div class="chart-subtitle">Daily wind generation (GWh) and capture rate (%), February 2026 vs February 2025</div>
+  </div>
+  <div id="plotly-chart"></div>
+  <div class="chart-footer">
+    <span class="chart-source">Source: ISO-NE, Modo Energy · Get the data behind this chart</span>
+    <span class="chart-wordmark">MODO ENERGY</span>
+  </div>
+  <script>
+    var chartData = [{"marker": {"color": "#467EE4"}, "name": "Wind generation 2026", "opacity": 0.88, "x": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28], "y": [26.30079166666667, 23.19535416666667, 8.341745833333333, 13.62564583333333, 11.73734722222222, 5.184881944444444, 15.66829166666667, 29.50195833333333, 28.91595833333333, 11.40171388888889, 16.30735416666667, 27.51004166666667, 18.166625, 11.39841666666667, 13.01899305555555, 8.533708333333333, 6.190888888888889, 19.50486111111111, 8.884729166666666, 11.94821527777778, 11.77453472222222, 10.79325694444445, 24.52223611111111, 20.49447222222222, 13.16056944444444, 17.4135625, 8.455354166666666, 18.39741666666667], "type": "bar"}, {"marker": {"color": "#81B1FE"}, "name": "Wind generation 2025", "opacity": 0.6, "x": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28], "y": [15.88079861111111, 8.130854166666667, 9.568159722222223, 21.80784722222222, 15.27550694444444, 9.934458333333334, 17.62790277777778, 10.69104861111111, 3.211986111111111, 13.08428472222222, 10.56897083333333, 3.695423611111111, 14.29614583333333, 25.42433333333333, 11.08897916666667, 10.55991666666667, 20.13022916666667, 19.99228472222222, 16.31296527777778, 9.147194444444445, 23.44927083333333, 14.19633333333333, 9.642395833333333, 10.05059722222222, 8.60179861111111, 14.93800138888889, 8.33834375, 13.44545833333333], "type": "bar"}, {"line": {"color": "#E03F61", "width": 2.4}, "mode": "lines", "name": "Capture rate 2026", "x": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28], "y": [99.33256843700975, 99.7683543422653, 104.15750452359569, 96.00873069360256, 99.97126243839313, 106.18902773063522, 113.8071744080499, 101.260252261248, 101.2826494361386, 103.18780406185391, 95.49694096060281, 99.95286251906845, 104.0266953374168, 90.98251625745607, 96.74735223715673, 101.79302102803301, 91.20885768941119, 98.73674168797321, 93.42233097290192, 97.74083561768884, 100.1935786047598, 101.9097856361813, 100.8714017362435, 100.2280084536477, 98.24840652180585, 98.78872073750617, 100.0389501794738, 80.79198140421718], "yaxis": "y2", "type": "scatter"}, {"line": {"color": "#F7C191", "dash": "dash", "width": 1.4}, "mode": "lines", "name": "Capture rate 2025", "x": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28], "y": [104.3519822616674, 101.99745597260399, 93.91083762590586, 104.7959302824729, 106.13230870665049, 103.0886737779623, 94.22038842728959, 98.34939102762536, 96.62393499479732, 105.1107461390945, 99.02995032209603, 94.58219758918027, 94.0976779850296, 99.7881947088999, 95.20132735681052, 102.96691647708668, 100.2562377258125, 99.98926867586357, 100.8433883821448, 102.52960093663211, 100.27048533775209, 104.9552887630574, 98.95695394606598, 83.7123986326023, 99.99239112156803, 98.96428407596407, 103.0713198204407, 90.96308687800303], "yaxis": "y2", "type": "scatter"}];
+    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 12}, "hoverlabel": {"bgcolor": "#FFFFFF", "bordercolor": "#D0D0D0", "font": {"family": "DM Sans, sans-serif", "size": 12}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 11}, "orientation": "h", "x": 0.5, "xanchor": "center", "y": -0.12, "yanchor": "top"}, "margin": {"b": 60, "l": 60, "r": 20, "t": 20}, "paper_bgcolor": "#FFFFFF", "plot_bgcolor": "#FFFFFF", "xaxis": {"linecolor": "#D0D0D0", "linewidth": 0.8, "showgrid": false, "showline": true, "tickfont": {"color": "#5A6570", "size": 11}, "tickformat": "%-d %b", "ticks": ""}, "yaxis": {"gridcolor": "#F9F9F9", "gridwidth": 0.25, "linecolor": "#D0D0D0", "linewidth": 0.8, "separatethousands": true, "showgrid": true, "showline": true, "tickfont": {"color": "#5A6570", "size": 11}, "ticks": "", "zeroline": false}}}, "shapes": [{"layer": "below", "line": {"color": "#8E99A4", "dash": "dot", "width": 0.8}, "type": "line", "x0": 0, "x1": 1, "xref": "x domain", "y0": 100, "y1": 100, "yref": "y2"}], "yaxis2": {"title": {"text": "Capture rate (%)"}, "overlaying": "y", "side": "right", "showgrid": false, "range": [60, 120]}, "barmode": "group", "xaxis": {"title": {"text": "Day of February"}}, "yaxis": {"title": {"text": "GWh"}}};
+    var chartConfig = {
+      displayModeBar: false,
+      responsive: true,
+      staticPlot: false
+    };
+    Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig);
+  </script>
+</body>
+</html>
