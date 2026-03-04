@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Implied heat rates hit <b>66.4 MMBtu/MWh</b> on February 9 — oil, not gas, was setting the price</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.0/plotly.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #FFFFFF;
+      padding: 24px 32px 16px 32px;
+      max-width: 960px;
+    }
+    .chart-header {
+      margin-bottom: 8px;
+    }
+    .chart-title {
+      font-size: 20px;
+      font-weight: 400;
+      color: #1B2A4A;
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+    .chart-subtitle {
+      font-size: 14px;
+      font-weight: 400;
+      color: #5A6570;
+      line-height: 1.4;
+    }
+    #plotly-chart {
+      width: 100%;
+      height: 450px;
+    }
+    .chart-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      padding-top: 8px;
+    }
+    .chart-source {
+      font-size: 11px;
+      color: #8E99A4;
+    }
+    .chart-wordmark {
+      font-size: 11px;
+      font-weight: 700;
+      color: #1B2A4A;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="chart-header">
+    <div class="chart-title">Implied heat rates hit <b>66.4 MMBtu/MWh</b> on February 9 — oil, not gas, was setting the price</div>
+    <div class="chart-subtitle">Internal Hub day-ahead LMP ($/MWh) vs Henry Hub gas price ($/MMBtu), February 2026</div>
+  </div>
+  <div id="plotly-chart"></div>
+  <div class="chart-footer">
+    <span class="chart-source">Source: ISO-NE, CME Group, Modo Energy · Get the data behind this chart</span>
+    <span class="chart-wordmark">MODO ENERGY</span>
+  </div>
+  <script>
+    var chartData = [{"line": {"color": "#6F5FE5", "width": 2.4}, "mode": "lines", "name": "Day-ahead LMP", "x": ["2026-02-01T00:00:00", "2026-02-02T00:00:00", "2026-02-03T00:00:00", "2026-02-04T00:00:00", "2026-02-05T00:00:00", "2026-02-06T00:00:00", "2026-02-07T00:00:00", "2026-02-08T00:00:00", "2026-02-09T00:00:00", "2026-02-10T00:00:00", "2026-02-11T00:00:00", "2026-02-12T00:00:00", "2026-02-13T00:00:00", "2026-02-14T00:00:00", "2026-02-15T00:00:00", "2026-02-16T00:00:00", "2026-02-17T00:00:00", "2026-02-18T00:00:00", "2026-02-19T00:00:00", "2026-02-20T00:00:00", "2026-02-21T00:00:00", "2026-02-22T00:00:00", "2026-02-23T00:00:00", "2026-02-24T00:00:00", "2026-02-25T00:00:00", "2026-02-26T00:00:00", "2026-02-27T00:00:00", "2026-02-28T00:00:00"], "y": [232.5758333333333, 246.2891666666667, 257.7008333333333, 187.9670833333333, 212.2116666666667, 212.0008333333334, 210.8920833333333, 215.1920833333333, 215.7045833333333, 164.5716666666667, 95.57416666666667, 109.2808333333333, 101.3945833333333, 87.69208333333334, 79.09083333333334, 81.36208333333333, 76.20125, 75.7725, 75.89958333333333, 68.82958333333333, 59.995, 60.24625, 79.52291666666666, 79.84625, 87.55083333333333, 64.45541666666666, 51.56875, 41.07375], "type": "scatter"}, {"line": {"color": "#E03F61", "width": 2.4}, "mode": "lines", "name": "Real-time LMP", "x": ["2026-02-01T00:00:00", "2026-02-02T00:00:00", "2026-02-03T00:00:00", "2026-02-04T00:00:00", "2026-02-05T00:00:00", "2026-02-06T00:00:00", "2026-02-07T00:00:00", "2026-02-08T00:00:00", "2026-02-09T00:00:00", "2026-02-10T00:00:00", "2026-02-11T00:00:00", "2026-02-12T00:00:00", "2026-02-13T00:00:00", "2026-02-14T00:00:00", "2026-02-15T00:00:00", "2026-02-16T00:00:00", "2026-02-17T00:00:00", "2026-02-18T00:00:00", "2026-02-19T00:00:00", "2026-02-20T00:00:00", "2026-02-21T00:00:00", "2026-02-22T00:00:00", "2026-02-23T00:00:00", "2026-02-24T00:00:00", "2026-02-25T00:00:00", "2026-02-26T00:00:00", "2026-02-27T00:00:00", "2026-02-28T00:00:00"], "y": [249.9866666666667, 278.2070833333333, 208.0831818181818, 167.7378260869565, 227.3554166666667, 214.4033333333333, 207.82125, 245.3341666666667, 226.76625, 159.4895833333333, 137.95875, 110.51, 87.81791666666668, 102.8266666666667, 75.75833333333334, 74.48666666666666, 85.38083333333333, 63.93625, 58.33916666666666, 59.89291666666667, 61.76041666666666, 56.71041666666667, 69.07625, 91.04625, 89.54958333333333, 63.71875, 49.68208333333334, 46.00791666666667], "type": "scatter"}, {"line": {"color": "#E59C58", "width": 2.4}, "mode": "lines", "name": "Henry Hub ($/MMBtu)", "x": ["2026-02-02T00:00:00", "2026-02-03T00:00:00", "2026-02-04T00:00:00", "2026-02-05T00:00:00", "2026-02-06T00:00:00", "2026-02-07T00:00:00", "2026-02-08T00:00:00", "2026-02-09T00:00:00", "2026-02-10T00:00:00", "2026-02-11T00:00:00", "2026-02-12T00:00:00", "2026-02-13T00:00:00", "2026-02-14T00:00:00", "2026-02-15T00:00:00", "2026-02-16T00:00:00", "2026-02-17T00:00:00", "2026-02-18T00:00:00", "2026-02-19T00:00:00", "2026-02-20T00:00:00", "2026-02-21T00:00:00", "2026-02-22T00:00:00", "2026-02-23T00:00:00", "2026-02-24T00:00:00", "2026-02-25T00:00:00", "2026-02-26T00:00:00", "2026-02-27T00:00:00", "2026-02-28T00:00:00"], "y": [4.4, 4.11, 6.88, 5.28, 4.37, 4.37, 4.37, 3.25, 3.18, 3.25, 3.43, 3.24, 3.24, 3.24, 3.24, 3.13, 2.98, 3.09, 3.15, 3.15, 3.15, 3.13, 3.13, 3.13, 3.13, 3.13, 3.13], "yaxis": "y2", "type": "scatter"}];
+    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 12}, "hoverlabel": {"bgcolor": "#FFFFFF", "bordercolor": "#D0D0D0", "font": {"family": "DM Sans, sans-serif", "size": 12}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 11}, "orientation": "h", "x": 0.5, "xanchor": "center", "y": -0.12, "yanchor": "top"}, "margin": {"b": 60, "l": 60, "r": 20, "t": 20}, "paper_bgcolor": "#FFFFFF", "plot_bgcolor": "#FFFFFF", "xaxis": {"linecolor": "#D0D0D0", "linewidth": 0.8, "showgrid": false, "showline": true, "tickfont": {"color": "#5A6570", "size": 11}, "tickformat": "%-d %b", "ticks": ""}, "yaxis": {"gridcolor": "#F9F9F9", "gridwidth": 0.25, "linecolor": "#D0D0D0", "linewidth": 0.8, "separatethousands": true, "showgrid": true, "showline": true, "tickfont": {"color": "#5A6570", "size": 11}, "ticks": "", "zeroline": false}}}, "yaxis2": {"title": {"text": "$/MMBtu"}, "overlaying": "y", "side": "right", "showgrid": false}, "yaxis": {"title": {"text": "$/MWh"}}, "hovermode": "x unified"};
+    var chartConfig = {
+      displayModeBar: false,
+      responsive: true,
+      staticPlot: false
+    };
+    Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig);
+  </script>
+</body>
+</html>
