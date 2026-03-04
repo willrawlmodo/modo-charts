@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maine's real-time 4-hour spread reached <b>$434/MW-day</b> despite the lowest day-ahead prices</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.0/plotly.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #FFFFFF;
+      padding: 24px 32px 16px 32px;
+      max-width: 960px;
+    }
+    .chart-header {
+      margin-bottom: 8px;
+    }
+    .chart-title {
+      font-size: 20px;
+      font-weight: 400;
+      color: #1B2A4A;
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+    .chart-subtitle {
+      font-size: 14px;
+      font-weight: 400;
+      color: #5A6570;
+      line-height: 1.4;
+    }
+    #plotly-chart {
+      width: 100%;
+      height: 450px;
+    }
+    .chart-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      padding-top: 8px;
+    }
+    .chart-source {
+      font-size: 11px;
+      color: #8E99A4;
+    }
+    .chart-wordmark {
+      font-size: 11px;
+      font-weight: 700;
+      color: #1B2A4A;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="chart-header">
+    <div class="chart-title">Maine's real-time 4-hour spread reached <b>$434/MW-day</b> despite the lowest day-ahead prices</div>
+    <div class="chart-subtitle">Average 4-hour tolling battery spread by zone, February 2026 vs February 2025 ($/MW-day)</div>
+  </div>
+  <div id="plotly-chart"></div>
+  <div class="chart-footer">
+    <span class="chart-source">Source: ISO-NE, Modo Energy · Get the data behind this chart</span>
+    <span class="chart-wordmark">MODO ENERGY</span>
+  </div>
+  <script>
+    var chartData = [{"marker": {"color": "#A074FB"}, "name": "Day-ahead Feb 2025", "orientation": "h", "x": [231.2825, 246.26428, 242.70607, 241.98929, 241.68929, 240.1375, 246.05037, 245.7825, 240.11679], "y": ["Connecticut", "New Hampshire", "Internal Hub", "Western Massachusetts", "Rhode Island", "Vermont", "SE Massachusetts", "NE Mass / Boston", "Maine"], "type": "bar"}, {"marker": {"color": "#6F5FE5"}, "name": "Day-ahead Feb 2026", "orientation": "h", "x": [247.62071, 252.72322, 257.42215, 256.41965, 263.4643, 254.68214, 260.9293, 260.1518, 238.28143], "y": ["Connecticut", "New Hampshire", "Internal Hub", "Western Massachusetts", "Rhode Island", "Vermont", "SE Massachusetts", "NE Mass / Boston", "Maine"], "type": "bar"}, {"marker": {"color": "#F7C191"}, "name": "Real-time Feb 2025", "orientation": "h", "x": [395.34372, 415.44592, 410.01395, 409.60623, 411.86862, 400.32278, 415.69675, 416.52792, 411.9171], "y": ["Connecticut", "New Hampshire", "Internal Hub", "Western Massachusetts", "Rhode Island", "Vermont", "SE Massachusetts", "NE Mass / Boston", "Maine"], "type": "bar"}, {"marker": {"color": "#E03F61"}, "name": "Real-time Feb 2026", "orientation": "h", "x": [392.37616, 400.3477, 403.64444, 404.1243, 404.29376, 404.79245, 405.62827, 407.24252, 434.41785], "y": ["Connecticut", "New Hampshire", "Internal Hub", "Western Massachusetts", "Rhode Island", "Vermont", "SE Massachusetts", "NE Mass / Boston", "Maine"], "type": "bar"}];
+    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 12}, "hoverlabel": {"bgcolor": "#FFFFFF", "bordercolor": "#D0D0D0", "font": {"family": "DM Sans, sans-serif", "size": 12}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 11}, "orientation": "h", "x": 0.5, "xanchor": "center", "y": -0.12, "yanchor": "top"}, "margin": {"b": 60, "l": 60, "r": 20, "t": 20}, "paper_bgcolor": "#FFFFFF", "plot_bgcolor": "#FFFFFF", "xaxis": {"linecolor": "#D0D0D0", "linewidth": 0.8, "showgrid": false, "showline": true, "tickfont": {"color": "#5A6570", "size": 11}, "tickformat": "%-d %b", "ticks": ""}, "yaxis": {"gridcolor": "#F9F9F9", "gridwidth": 0.25, "linecolor": "#D0D0D0", "linewidth": 0.8, "separatethousands": true, "showgrid": true, "showline": true, "tickfont": {"color": "#5A6570", "size": 11}, "ticks": "", "zeroline": false}}}, "yaxis": {"automargin": true}, "barmode": "group", "xaxis": {"title": {"text": "$/MW-day"}}, "height": 500};
+    var chartConfig = {
+      displayModeBar: false,
+      responsive: true,
+      staticPlot: false
+    };
+    Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig);
+  </script>
+</body>
+</html>
