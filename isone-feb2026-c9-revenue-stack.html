@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A 4-hour BESS at the hub earned <b>$54/kW-month</b> in February, 84% from real-time energy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.0/plotly.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #FFFFFF;
+      padding: 24px 32px 16px 32px;
+      max-width: 960px;
+    }
+    .chart-header {
+      margin-bottom: 8px;
+    }
+    .chart-title {
+      font-size: 20px;
+      font-weight: 400;
+      color: #1B2A4A;
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+    .chart-subtitle {
+      font-size: 14px;
+      font-weight: 400;
+      color: #5A6570;
+      line-height: 1.4;
+    }
+    #plotly-chart {
+      width: 100%;
+      height: 450px;
+    }
+    .chart-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      padding-top: 8px;
+    }
+    .chart-source {
+      font-size: 11px;
+      color: #8E99A4;
+    }
+    .chart-wordmark {
+      font-size: 11px;
+      font-weight: 700;
+      color: #1B2A4A;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="chart-header">
+    <div class="chart-title">A 4-hour BESS at the hub earned <b>$54/kW-month</b> in February, 84% from real-time energy</div>
+    <div class="chart-subtitle">Estimated BESS revenue stack, 4-hour system at Internal Hub, February 2026 ($/kW-month)</div>
+  </div>
+  <div id="plotly-chart"></div>
+  <div class="chart-footer">
+    <span class="chart-source">Source: ISO-NE, Modo Energy · Get the data behind this chart</span>
+    <span class="chart-wordmark">MODO ENERGY</span>
+  </div>
+  <script>
+    var chartData = [{"marker": {"color": "#6F5FE5"}, "name": "Real-time energy arbitrage (84%)", "orientation": "h", "text": "$45.2/kW-mo (84%)", "textfont": {"color": "white", "size": 11}, "textposition": "inside", "x": [45.21], "y": ["Revenue"], "type": "bar"}, {"marker": {"color": "#467EE4"}, "name": "Regulation capacity (12%)", "orientation": "h", "text": "$6.3/kW-mo (12%)", "textfont": {"color": "white", "size": 11}, "textposition": "inside", "x": [6.31], "y": ["Revenue"], "type": "bar"}, {"marker": {"color": "#467EE4"}, "name": "Capacity (5%)", "orientation": "h", "text": "$2.6/kW-mo (5%)", "textfont": {"color": "white", "size": 11}, "textposition": "inside", "x": [2.59], "y": ["Revenue"], "type": "bar"}, {"marker": {"color": "#6CDD9C"}, "name": "Regulation service (0%)", "orientation": "h", "text": "$0.0/kW-mo (0%)", "textfont": {"color": "white", "size": 11}, "textposition": "inside", "x": [0.02], "y": ["Revenue"], "type": "bar"}];
+    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 12}, "hoverlabel": {"bgcolor": "#FFFFFF", "bordercolor": "#D0D0D0", "font": {"family": "DM Sans, sans-serif", "size": 12}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 11}, "orientation": "h", "x": 0.5, "xanchor": "center", "y": -0.12, "yanchor": "top"}, "margin": {"b": 60, "l": 60, "r": 20, "t": 20}, "paper_bgcolor": "#FFFFFF", "plot_bgcolor": "#FFFFFF", "xaxis": {"linecolor": "#D0D0D0", "linewidth": 0.8, "showgrid": false, "showline": true, "tickfont": {"color": "#5A6570", "size": 11}, "tickformat": "%-d %b", "ticks": ""}, "yaxis": {"gridcolor": "#F9F9F9", "gridwidth": 0.25, "linecolor": "#D0D0D0", "linewidth": 0.8, "separatethousands": true, "showgrid": true, "showline": true, "tickfont": {"color": "#5A6570", "size": 11}, "ticks": "", "zeroline": false}}}, "yaxis": {"visible": false}, "barmode": "stack", "xaxis": {"title": {"text": "$/kW-month"}}, "height": 300, "showlegend": true};
+    var chartConfig = {
+      displayModeBar: false,
+      responsive: true,
+      staticPlot: false
+    };
+    Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig);
+  </script>
+</body>
+</html>
