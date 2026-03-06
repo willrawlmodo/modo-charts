@@ -6,74 +6,129 @@
   <title>Solar peaked at <b>11.4 GW</b> at midday, cutting net load by <b>30 GW</b> vs overnight</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.0/plotly.min.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'DM Sans', sans-serif;
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #FFFFFF;
-      padding: 24px 32px 16px 32px;
-      max-width: 960px;
+      color: #333333;
     }
+
+    .chart-wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      padding: 24px 24px 16px 24px;
+    }
+
+    /* === HEADER === */
     .chart-header {
-      margin-bottom: 8px;
+      margin-bottom: 2px;
     }
     .chart-title {
-      font-size: 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 21px;
       font-weight: 400;
+      line-height: 1.3;
       color: #1B2A4A;
-      line-height: 1.35;
-      margin-bottom: 4px;
+      margin: 0;
+    }
+    .chart-title b {
+      font-weight: 700;
     }
     .chart-subtitle {
+      font-family: 'DM Sans', sans-serif;
       font-size: 14px;
       font-weight: 400;
       color: #5A6570;
-      line-height: 1.4;
+      margin-top: 6px;
+      line-height: 1.3;
     }
+
+    /* === CHART === */
     #plotly-chart {
+      flex: 1;
+      min-height: 0;
       width: 100%;
-      height: 450px;
     }
+
+    /* === FOOTER === */
     .chart-footer {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin-top: 8px;
-      padding-top: 8px;
+      align-items: flex-end;
+      padding-top: 10px;
+      gap: 16px;
+    }
+    .chart-footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex: 1;
     }
     .chart-source {
+      font-family: 'DM Sans', sans-serif;
       font-size: 11px;
+      font-weight: 400;
       color: #8E99A4;
+      line-height: 1.4;
+    }
+    .chart-note {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: #8E99A4;
+      line-height: 1.4;
     }
     .chart-wordmark {
-      font-size: 11px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 22px;
       font-weight: 700;
       color: #1B2A4A;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.25em;
+      white-space: nowrap;
+      flex-shrink: 0;
+      text-transform: uppercase;
     }
   </style>
 </head>
 <body>
-  <div class="chart-header">
-    <div class="chart-title">Solar peaked at <b>11.4 GW</b> at midday, cutting net load by <b>30 GW</b> vs overnight</div>
-    <div class="chart-subtitle">Hourly average generation by fuel type, February 2026 (GW)</div>
+  <div class="chart-wrapper">
+    <div class="chart-header">
+      <div class="chart-title">Solar peaked at <b>11.4 GW</b> at midday, cutting net load by <b>30 GW</b> vs overnight</div>
+      <div class="chart-subtitle">Hourly average generation by fuel type, February 2026 (GW)</div>
+    </div>
+
+    <div id="plotly-chart"></div>
+
+    <div class="chart-footer">
+      <div class="chart-footer-left">
+        <div class="chart-source">Source: MISO, Modo Energy</div>
+        
+      </div>
+      <div class="chart-wordmark">MODOENERGY</div>
+    </div>
   </div>
-  <div id="plotly-chart"></div>
-  <div class="chart-footer">
-    <span class="chart-source">Source: MISO, Modo Energy</span>
-    <span class="chart-wordmark">MODO ENERGY</span>
-  </div>
+
   <script>
     var chartData = [{"fillcolor": "#27AC60", "hovertemplate": "Nuclear: %{y:,.1f} GW", "line": {"color": "#27AC60", "width": 0.5}, "mode": "lines", "name": "Nuclear", "stackgroup": "one", "x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], "y": [10.77898208955224, 10.7891552238806, 10.80563554216867, 10.80894578313253, 10.81243674698795, 10.816948795180721, 10.81634328358209, 10.812482142857139, 10.80852976190476, 10.80364583333333, 10.795397014925369, 10.78828443113772, 10.77408630952381, 10.749303571428571, 10.741372372372371, 10.73308459214501, 10.70351515151515, 10.725291666666669, 10.8128447761194, 10.81228571428571, 10.79902985074627, 10.780701807228919, 10.778093655589121, 10.77926047904192], "type": "scatter"}, {"fillcolor": "#554E4E", "hovertemplate": "Coal: %{y:,.1f} GW", "line": {"color": "#554E4E", "width": 0.5}, "mode": "lines", "name": "Coal", "stackgroup": "one", "x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], "y": [24.127035820895518, 23.651910447761193, 23.46389457831325, 23.62814759036144, 24.0249156626506, 24.89002710843374, 26.273325373134327, 27.0278125, 25.74752380952381, 24.56751488095238, 23.92645970149254, 23.22905089820359, 22.3989880952381, 21.7824880952381, 21.45572372372372, 21.86530513595166, 23.54337272727273, 26.13465476190476, 28.09897910447761, 28.20896726190476, 27.87649850746269, 26.99442771084337, 25.93190332326284, 24.86028143712575], "type": "scatter"}, {"fillcolor": "#E59C58", "hovertemplate": "Natural gas: %{y:,.1f} GW", "line": {"color": "#E59C58", "width": 0.5}, "mode": "lines", "name": "Natural gas", "stackgroup": "one", "x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], "y": [23.950722388059702, 23.85567164179105, 23.907286144578308, 24.13073192771084, 24.71293072289157, 26.20297891566265, 27.672841791044778, 27.270556547619048, 24.867071428571432, 23.1982619047619, 22.40227164179105, 21.61768562874251, 21.23813988095238, 20.88914880952381, 20.835906906906906, 21.67035347432024, 24.56368181818182, 26.70096726190476, 27.37154626865672, 26.89626488095238, 26.21943880597015, 25.41579518072289, 24.7683746223565, 24.17269760479042], "type": "scatter"}, {"fillcolor": "#81B1FE", "hovertemplate": "Wind: %{y:,.1f} GW", "line": {"color": "#81B1FE", "width": 0.5}, "mode": "lines", "name": "Wind", "stackgroup": "one", "x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], "y": [14.63737910447761, 14.43708059701492, 14.10007228915663, 13.8248734939759, 13.664072289156628, 13.61321987951807, 13.59899402985075, 13.594431547619049, 12.9773005952381, 12.03179761904762, 11.497214925373129, 11.395188622754489, 11.73475297619048, 12.296425595238102, 12.71533333333333, 12.87890936555891, 12.68441515151515, 12.67928273809524, 13.16369850746269, 13.99233630952381, 14.403167164179111, 14.71096084337349, 14.70276737160121, 14.78255988023952], "type": "scatter"}, {"fillcolor": "#FFE300", "hovertemplate": "Solar: %{y:,.1f} GW", "line": {"color": "#FFE300", "width": 0.5}, "mode": "lines", "name": "Solar", "stackgroup": "one", "x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], "y": [-0.006020895522388059, -0.006205970149253731, -0.006129518072289157, -0.0060903614457831325, -0.0061656626506024085, -0.006180722891566265, 0.02633134328358209, 1.9213184523809521, 7.053104166666667, 10.042752976190481, 11.108501492537311, 11.44248203592814, 11.42284821428571, 11.22266071428571, 10.54078978978979, 8.823003021148038, 4.274724242424242, 0.46332440476190484, -0.001050746268656716, -0.001741071428571429, -0.001970149253731343, -0.001451807228915663, -0.0029214501510574017, -0.005874251497005987], "type": "scatter"}, {"fillcolor": "#C5AAFD", "hovertemplate": "Other: %{y:,.1f} GW", "line": {"color": "#C5AAFD", "width": 0.5}, "mode": "lines", "name": "Other", "stackgroup": "one", "x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], "y": [0.1127731343283582, 0.1181731343283582, 0.2313012048192771, 0.5105301204819277, 1.189219879518072, 1.995463855421687, 2.428155223880597, 2.098994047619048, 1.241458333333333, 0.8963244047619048, 0.6520298507462686, 0.5292395209580839, 0.4358720238095238, 0.46077380952380953, 0.5989789789789789, 1.064918429003021, 1.766048484848485, 2.44508630952381, 2.312940298507463, 1.78702380952381, 1.4730985074626861, 1.00446686746988, 0.6066223564954683, 0.223437125748503], "type": "scatter"}, {"fillcolor": "#6F5FE5", "hovertemplate": "Imports: %{y:,.1f} GW", "line": {"color": "#6F5FE5", "width": 0.5}, "mode": "lines", "name": "Imports", "stackgroup": "one", "x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], "y": [-1.250401785714286, -1.22577380952381, -1.161098214285714, -1.188821428571429, -1.109577380952381, -0.9343502994011976, -0.3127202380952381, -0.5399285714285714, -1.010181547619048, -1.257321428571429, -1.41875, -1.2536059701492541, -1.0973839285714289, -1.1544850299401201, -1.1080327380952382, -1.139990963855422, -0.27858912386706947, 0.4719613095238095, 0.2270985074626866, 0.0479375, -0.2661458333333333, -0.5574464285714286, -0.8442410714285714, -1.093401785714286], "type": "scatter"}, {"fillcolor": "#A074FB", "hovertemplate": "Battery: %{y:,.1f} GW", "line": {"color": "#A074FB", "width": 0.5}, "mode": "lines", "name": "Battery", "stackgroup": "one", "x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], "y": [-0.11890909090909091, -0.2500436363636364, -0.2243014705882353, -0.13826102941176469, -0.019577205882352938, 0.1332058823529412, 0.2273018181818182, 0.10547101449275359, -0.0616231884057971, -0.06427536231884058, -0.1108804347826087, -0.1210690909090909, -0.19590942028985509, -0.2450833333333333, -0.14125274725274722, 0.003617647058823529, 0.1870221402214022, 0.335268115942029, 0.29133576642335773, 0.09542391304347826, 0.044054347826086956, -0.01296739130434783, -0.04877205882352941, -0.05842335766423358], "type": "scatter"}];
-    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 12}, "hoverlabel": {"bgcolor": "#FFFFFF", "bordercolor": "#D0D0D0", "font": {"family": "DM Sans, sans-serif", "size": 12}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 11}, "orientation": "h", "x": 0.5, "xanchor": "center", "y": -0.12, "yanchor": "top"}, "margin": {"b": 60, "l": 60, "r": 20, "t": 20}, "paper_bgcolor": "#FFFFFF", "plot_bgcolor": "#FFFFFF", "xaxis": {"linecolor": "#D0D0D0", "linewidth": 0.8, "showgrid": false, "showline": true, "tickfont": {"color": "#5A6570", "size": 11}, "tickformat": "%-d %b", "ticks": ""}, "yaxis": {"gridcolor": "#F9F9F9", "gridwidth": 0.25, "linecolor": "#D0D0D0", "linewidth": 0.8, "separatethousands": true, "showgrid": true, "showline": true, "tickfont": {"color": "#5A6570", "size": 11}, "ticks": "", "zeroline": false}}}, "xaxis": {"dtick": 4, "range": [0, 23]}, "yaxis": {"separatethousands": true}};
+    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 12}, "hoverlabel": {"bgcolor": "#333333", "bordercolor": "#333333", "font": {"color": "#FFFFFF", "family": "DM Sans, sans-serif", "size": 13}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 13}, "itemsizing": "constant", "orientation": "h", "traceorder": "normal", "x": 0, "xanchor": "left", "y": 1.02, "yanchor": "bottom"}, "margin": {"b": 40, "l": 0, "pad": 0, "r": 20, "t": 10}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)", "xaxis": {"automargin": true, "showgrid": false, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 12}, "tickformat": "%-d %b", "ticks": ""}, "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 12}, "ticks": "", "zeroline": true, "zerolinecolor": "#D0D0D0", "zerolinewidth": 1}}}, "xaxis": {"dtick": 4, "range": [0, 23]}, "yaxis": {"separatethousands": true}, "legend": {"orientation": "h", "yanchor": "bottom", "y": 1.02, "xanchor": "center", "x": 0.5}};
     var chartConfig = {
       displayModeBar: false,
       responsive: true,
       staticPlot: false
     };
     Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig);
+
+    window.addEventListener('resize', function() {
+      Plotly.Plots.resize('plotly-chart');
+    });
   </script>
 </body>
 </html>
