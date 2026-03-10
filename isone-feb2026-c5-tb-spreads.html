@@ -10,10 +10,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.0/plotly.min.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
+    html {
+      width: 100%;
+      height: 100%;
+    }
+    body {
       width: 100%;
       min-height: 100%;
-      overflow: auto;
+      overflow-x: hidden;
       font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #FFFFFF;
       color: #333333;
@@ -23,20 +27,20 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      min-height: 100%;
-      padding: 24px 24px 16px 24px;
+      padding: 24px 28px 18px 28px;
     }
 
     /* === HEADER === */
     .chart-header {
-      margin-bottom: 2px;
+      margin-bottom: 4px;
+      flex-shrink: 0;
     }
     .chart-title {
       font-family: 'DM Sans', sans-serif;
       font-size: 21px;
       font-weight: 400;
       line-height: 1.3;
-      color: #1B2A4A;
+      color: #000000;
       margin: 0;
     }
     .chart-title b {
@@ -44,7 +48,7 @@
     }
     .chart-subtitle {
       font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 400;
       color: #5A6570;
       margin-top: 6px;
@@ -63,14 +67,10 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      padding-top: 10px;
-      gap: 16px;
-    }
-    .chart-footer-left {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      flex: 1;
+      padding-top: 12px;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+      gap: 8px 24px;
     }
     .chart-source {
       font-family: 'DM Sans', sans-serif;
@@ -86,12 +86,19 @@
       color: #8E99A4;
       line-height: 1.4;
     }
+    .chart-footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
     .chart-wordmark {
       font-family: 'DM Sans', sans-serif;
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 700;
-      color: #1B2A4A;
-      letter-spacing: 0.25em;
+      color: #000000;
+      letter-spacing: 0.22em;
       white-space: nowrap;
       flex-shrink: 0;
       text-transform: uppercase;
@@ -117,8 +124,8 @@
   </div>
 
   <script>
-    var chartData = [{"marker": {"color": "#A074FB"}, "name": "Day-ahead Feb 2025", "orientation": "h", "x": [231.2825, 246.26428, 242.70607, 241.98929, 241.68929, 240.1375, 246.05037, 245.7825, 240.11679], "y": ["Connecticut", "New Hampshire", "Internal Hub", "Western Massachusetts", "Rhode Island", "Vermont", "SE Massachusetts", "NE Mass / Boston", "Maine"], "type": "bar"}, {"marker": {"color": "#6F5FE5"}, "name": "Day-ahead Feb 2026", "orientation": "h", "x": [247.62071, 252.72322, 257.42215, 256.41965, 263.4643, 254.68214, 260.9293, 260.1518, 238.28143], "y": ["Connecticut", "New Hampshire", "Internal Hub", "Western Massachusetts", "Rhode Island", "Vermont", "SE Massachusetts", "NE Mass / Boston", "Maine"], "type": "bar"}, {"marker": {"color": "#F7C191"}, "name": "Real-time Feb 2025", "orientation": "h", "x": [395.34372, 415.44592, 410.01395, 409.60623, 411.86862, 400.32278, 415.69675, 416.52792, 411.9171], "y": ["Connecticut", "New Hampshire", "Internal Hub", "Western Massachusetts", "Rhode Island", "Vermont", "SE Massachusetts", "NE Mass / Boston", "Maine"], "type": "bar"}, {"marker": {"color": "#E03F61"}, "name": "Real-time Feb 2026", "orientation": "h", "x": [392.37616, 400.3477, 403.64444, 404.1243, 404.29376, 404.79245, 405.62827, 407.24252, 434.41785], "y": ["Connecticut", "New Hampshire", "Internal Hub", "Western Massachusetts", "Rhode Island", "Vermont", "SE Massachusetts", "NE Mass / Boston", "Maine"], "type": "bar"}];
-    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 12}, "hoverlabel": {"bgcolor": "#333333", "bordercolor": "#333333", "font": {"color": "#FFFFFF", "family": "DM Sans, sans-serif", "size": 13}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 13}, "itemsizing": "constant", "orientation": "h", "traceorder": "normal", "x": 0, "xanchor": "left", "y": 1.02, "yanchor": "bottom"}, "margin": {"b": 40, "l": 0, "pad": 0, "r": 20, "t": 10}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)", "xaxis": {"automargin": true, "showgrid": false, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 12}, "tickformat": "%-d %b", "ticks": ""}, "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 12}, "ticks": "", "zeroline": true, "zerolinecolor": "#D0D0D0", "zerolinewidth": 1}}}, "yaxis": {"automargin": true}, "margin": {"t": 80}, "legend": {"font": {"size": 11}, "orientation": "h", "yanchor": "bottom", "y": 1.02, "xanchor": "left", "x": 0, "tracegroupgap": 5}, "barmode": "group", "xaxis": {"title": {}}, "height": 550};
+    var chartData = [{"hovertemplate": "Day-ahead Feb 2025: $%{x:,.0f}/MW-day<extra></extra>", "marker": {"color": "#A074FB"}, "name": "Day-ahead Feb 2025", "orientation": "h", "x": [231.2825, 246.26428, 242.70607, 241.98929, 241.68929, 240.1375, 246.05037, 245.7825, 240.11679], "y": ["Connecticut", "New Hampshire", "Internal Hub", "Western Massachusetts", "Rhode Island", "Vermont", "SE Massachusetts", "NE Mass / Boston", "Maine"], "type": "bar"}, {"hovertemplate": "Day-ahead Feb 2026: $%{x:,.0f}/MW-day<extra></extra>", "marker": {"color": "#6F5FE5"}, "name": "Day-ahead Feb 2026", "orientation": "h", "x": [247.62071, 252.72322, 257.42215, 256.41965, 263.4643, 254.68214, 260.9293, 260.1518, 238.28143], "y": ["Connecticut", "New Hampshire", "Internal Hub", "Western Massachusetts", "Rhode Island", "Vermont", "SE Massachusetts", "NE Mass / Boston", "Maine"], "type": "bar"}, {"hovertemplate": "Real-time Feb 2025: $%{x:,.0f}/MW-day<extra></extra>", "marker": {"color": "#F7C191"}, "name": "Real-time Feb 2025", "orientation": "h", "x": [395.34372, 415.44592, 410.01395, 409.60623, 411.86862, 400.32278, 415.69675, 416.52792, 411.9171], "y": ["Connecticut", "New Hampshire", "Internal Hub", "Western Massachusetts", "Rhode Island", "Vermont", "SE Massachusetts", "NE Mass / Boston", "Maine"], "type": "bar"}, {"hovertemplate": "Real-time Feb 2026: $%{x:,.0f}/MW-day<extra></extra>", "marker": {"color": "#E03F61"}, "name": "Real-time Feb 2026", "orientation": "h", "x": [392.37616, 400.3477, 403.64444, 404.1243, 404.29376, 404.79245, 405.62827, 407.24252, 434.41785], "y": ["Connecticut", "New Hampshire", "Internal Hub", "Western Massachusetts", "Rhode Island", "Vermont", "SE Massachusetts", "NE Mass / Boston", "Maine"], "type": "bar"}];
+    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#333333", "bordercolor": "#333333", "font": {"color": "#FFFFFF", "family": "DM Sans, sans-serif", "size": 13}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 12}, "itemsizing": "constant", "orientation": "h", "traceorder": "normal", "x": 0, "xanchor": "left", "y": 1.01, "yanchor": "bottom"}, "margin": {"b": 40, "l": 8, "pad": 4, "r": 20, "t": 10}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)", "xaxis": {"automargin": true, "showgrid": false, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "tickformat": "%-d %b", "ticks": ""}, "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": "", "zeroline": false}}}, "yaxis": {"automargin": true}, "margin": {"t": 80}, "legend": {"font": {"size": 12}, "orientation": "h", "yanchor": "bottom", "y": 1.01, "xanchor": "left", "x": 0, "tracegroupgap": 5}, "barmode": "group", "xaxis": {"title": {}}, "height": 550};
     var chartConfig = {
       displayModeBar: false,
       responsive: true,
@@ -129,6 +136,17 @@
     window.addEventListener('resize', function() {
       Plotly.Plots.resize('plotly-chart');
     });
+
+    // Report actual content height to parent for iframe auto-sizing.
+    // Parent listens for 'modo-chart-height' messages and resizes the iframe.
+    function reportHeight() {
+      var h = document.querySelector('.chart-wrapper').scrollHeight;
+      window.parent.postMessage({ type: 'modo-chart-height', height: h }, '*');
+    }
+    // Report after Plotly renders and on resize
+    setTimeout(reportHeight, 200);
+    setTimeout(reportHeight, 600);
+    window.addEventListener('resize', reportHeight);
   </script>
 </body>
 </html>
