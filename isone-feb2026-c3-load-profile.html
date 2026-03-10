@@ -10,10 +10,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.0/plotly.min.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
+    html {
+      width: 100%;
+      height: 100%;
+    }
+    body {
       width: 100%;
       min-height: 100%;
-      overflow: auto;
+      overflow-x: hidden;
       font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #FFFFFF;
       color: #333333;
@@ -23,20 +27,20 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      min-height: 100%;
-      padding: 24px 24px 16px 24px;
+      padding: 24px 28px 18px 28px;
     }
 
     /* === HEADER === */
     .chart-header {
-      margin-bottom: 2px;
+      margin-bottom: 4px;
+      flex-shrink: 0;
     }
     .chart-title {
       font-family: 'DM Sans', sans-serif;
       font-size: 21px;
       font-weight: 400;
       line-height: 1.3;
-      color: #1B2A4A;
+      color: #000000;
       margin: 0;
     }
     .chart-title b {
@@ -44,7 +48,7 @@
     }
     .chart-subtitle {
       font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 400;
       color: #5A6570;
       margin-top: 6px;
@@ -63,14 +67,10 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      padding-top: 10px;
-      gap: 16px;
-    }
-    .chart-footer-left {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      flex: 1;
+      padding-top: 12px;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+      gap: 8px 24px;
     }
     .chart-source {
       font-family: 'DM Sans', sans-serif;
@@ -86,12 +86,19 @@
       color: #8E99A4;
       line-height: 1.4;
     }
+    .chart-footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
     .chart-wordmark {
       font-family: 'DM Sans', sans-serif;
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 700;
-      color: #1B2A4A;
-      letter-spacing: 0.25em;
+      color: #000000;
+      letter-spacing: 0.22em;
       white-space: nowrap;
       flex-shrink: 0;
       text-transform: uppercase;
@@ -118,7 +125,7 @@
 
   <script>
     var chartData = [{"hovertemplate": "Load: %{y:,.1f} GW", "line": {"color": "#6F5FE5", "width": 2.4}, "mode": "lines", "name": "Total load", "x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], "y": [13.89008454166667, 13.56217149404762, 13.40811773214286, 13.41977849702381, 13.6949602681277, 14.387354130952382, 15.48256309821429, 16.063799854166668, 15.82121643452381, 15.325975976190481, 14.91034908035714, 14.58047961309524, 14.350312523809519, 14.28510230357143, 14.45460460119047, 15.10414488690476, 16.17123853869048, 17.28309060119048, 17.49272474404762, 17.28215044345238, 16.78710168154762, 16.10992540476191, 15.23898341071429, 14.42864472916667], "type": "scatter"}, {"hovertemplate": "Net load: %{y:,.1f} GW", "line": {"color": "#E03F61", "dash": "dash", "width": 2.2}, "mode": "lines", "name": "Net load", "x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], "y": [13.15052154563492, 12.841530124999998, 12.69455473611111, 12.71488291170635, 12.988124950667391, 13.66950120436508, 14.76602671074263, 15.30311706646825, 14.97430348809524, 14.415103456349199, 13.96998320734127, 13.6219845734127, 13.39692289087301, 13.346986976190479, 13.55299820238095, 14.29928278373016, 15.50431691170635, 16.63717393452381, 16.80178426785714, 16.55631711011905, 16.027587792658732, 15.339984184523809, 14.47573365873016, 13.67076476884921], "type": "scatter"}, {"fill": "toself", "fillcolor": "rgba(70,126,228,0.4)", "hoverinfo": "skip", "line": {"width": 0}, "name": "Wind + solar displacement", "showlegend": true, "x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0], "y": [13.89008454166667, 13.56217149404762, 13.40811773214286, 13.41977849702381, 13.6949602681277, 14.387354130952382, 15.48256309821429, 16.063799854166668, 15.82121643452381, 15.325975976190481, 14.91034908035714, 14.58047961309524, 14.350312523809519, 14.28510230357143, 14.45460460119047, 15.10414488690476, 16.17123853869048, 17.28309060119048, 17.49272474404762, 17.28215044345238, 16.78710168154762, 16.10992540476191, 15.23898341071429, 14.42864472916667, 13.67076476884921, 14.47573365873016, 15.339984184523809, 16.027587792658732, 16.55631711011905, 16.80178426785714, 16.63717393452381, 15.50431691170635, 14.29928278373016, 13.55299820238095, 13.346986976190479, 13.39692289087301, 13.6219845734127, 13.96998320734127, 14.415103456349199, 14.97430348809524, 15.30311706646825, 14.76602671074263, 13.66950120436508, 12.988124950667391, 12.71488291170635, 12.69455473611111, 12.841530124999998, 13.15052154563492], "type": "scatter"}, {"hovertemplate": "Feb 2025: %{y:,.1f} GW", "line": {"color": "#C5AAFD", "dash": "dot", "width": 1.3}, "mode": "lines", "name": "Total load Feb 2025", "x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], "y": [13.12659639583333, 12.78820966964286, 12.63581186309524, 12.6471134375, 12.93473607738095, 13.663631645833329, 14.794349324404761, 15.37131059821429, 15.12677774621212, 14.59919466369048, 14.18701279404762, 13.852038571428569, 13.64289916666667, 13.641109267857141, 13.88937843452381, 14.59228409821428, 15.715993117694799, 16.81072519345238, 17.00164569047619, 16.662312681547622, 16.13869572321429, 15.407037675595241, 14.50339063392857, 13.67636866071429], "type": "scatter"}];
-    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 12}, "hoverlabel": {"bgcolor": "#333333", "bordercolor": "#333333", "font": {"color": "#FFFFFF", "family": "DM Sans, sans-serif", "size": 13}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 13}, "itemsizing": "constant", "orientation": "h", "traceorder": "normal", "x": 0, "xanchor": "left", "y": 1.02, "yanchor": "bottom"}, "margin": {"b": 40, "l": 0, "pad": 0, "r": 20, "t": 10}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)", "xaxis": {"automargin": true, "showgrid": false, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 12}, "tickformat": "%-d %b", "ticks": ""}, "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 12}, "ticks": "", "zeroline": true, "zerolinecolor": "#D0D0D0", "zerolinewidth": 1}}}, "yaxis": {"rangemode": "tozero"}, "legend": {"orientation": "h", "yanchor": "bottom", "y": 1.02, "xanchor": "center", "x": 0.5}, "xaxis": {"title": {"text": "Hour of day"}}, "hovermode": "x unified"};
+    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#333333", "bordercolor": "#333333", "font": {"color": "#FFFFFF", "family": "DM Sans, sans-serif", "size": 13}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 12}, "itemsizing": "constant", "orientation": "h", "traceorder": "normal", "x": 0, "xanchor": "left", "y": 1.01, "yanchor": "bottom"}, "margin": {"b": 40, "l": 8, "pad": 4, "r": 20, "t": 10}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)", "xaxis": {"automargin": true, "showgrid": false, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "tickformat": "%-d %b", "ticks": ""}, "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": "", "zeroline": false}}}, "yaxis": {"rangemode": "tozero"}, "legend": {"orientation": "h", "yanchor": "bottom", "y": 1.01, "xanchor": "center", "x": 0.5}, "xaxis": {"title": {"text": "Hour of day"}}, "hovermode": "x unified"};
     var chartConfig = {
       displayModeBar: false,
       responsive: true,
@@ -129,6 +136,17 @@
     window.addEventListener('resize', function() {
       Plotly.Plots.resize('plotly-chart');
     });
+
+    // Report actual content height to parent for iframe auto-sizing.
+    // Parent listens for 'modo-chart-height' messages and resizes the iframe.
+    function reportHeight() {
+      var h = document.querySelector('.chart-wrapper').scrollHeight;
+      window.parent.postMessage({ type: 'modo-chart-height', height: h }, '*');
+    }
+    // Report after Plotly renders and on resize
+    setTimeout(reportHeight, 200);
+    setTimeout(reportHeight, 600);
+    window.addEventListener('resize', reportHeight);
   </script>
 </body>
 </html>
