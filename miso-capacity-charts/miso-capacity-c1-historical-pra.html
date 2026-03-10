@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MISO capacity prices surged from near-zero to <b>$215/MW-day</b> in six years</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.0/plotly.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #FFFFFF;
+      color: #333333;
+    }
+
+    .chart-wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding: 24px 28px 18px 28px;
+    }
+
+    /* === HEADER === */
+    .chart-header {
+      margin-bottom: 4px;
+      flex-shrink: 0;
+    }
+    .chart-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 21px;
+      font-weight: 400;
+      line-height: 1.3;
+      color: #000000;
+      margin: 0;
+    }
+    .chart-title b {
+      font-weight: 700;
+    }
+    .chart-subtitle {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #5A6570;
+      margin-top: 6px;
+      line-height: 1.3;
+    }
+
+    /* === CHART === */
+    #plotly-chart {
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+    }
+
+    /* === FOOTER === */
+    .chart-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-top: 12px;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+      gap: 8px 24px;
+    }
+    .chart-source {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: #8E99A4;
+      line-height: 1.4;
+    }
+    .chart-note {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: #8E99A4;
+      line-height: 1.4;
+    }
+    .chart-footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+    .chart-wordmark {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #000000;
+      letter-spacing: 0.22em;
+      white-space: nowrap;
+      flex-shrink: 0;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="chart-wrapper">
+    <div class="chart-header">
+      <div class="chart-title">MISO capacity prices surged from near-zero to <b>$215/MW-day</b> in six years</div>
+      <div class="chart-subtitle">Annualized PRA clearing price ($/MW-day)</div>
+    </div>
+
+    <div id="plotly-chart"></div>
+
+    <div class="chart-footer">
+      <div class="chart-footer-left">
+        <div class="chart-source">Source: MISO, Modo Energy</div>
+        <div class="chart-note">Note: PY 2019-22 are annual auction prices. PY 2023-26 are seasonal averages. PY 2022-23 North/Central price reflects CONE cap of $236.66/MW-day. Background shading shows demand curve regime changes.</div>
+      </div>
+      <div class="chart-wordmark">MODOENERGY</div>
+    </div>
+  </div>
+
+  <script>
+    var chartData = [{"fill": "tozeroy", "fillcolor": "rgba(111, 95, 229, 0.08)", "line": {"color": "#6F5FE5", "width": 2.8}, "marker": {"color": "#6F5FE5", "size": 8}, "mode": "lines+markers", "name": "North/Central", "x": [0, 1, 2, 3, 4, 5, 6], "y": [2.99, 5.0, 5.0, 236.66, 9.25, 19.96, 215.3], "type": "scatter"}, {"line": {"color": "#E59C58", "width": 2.4}, "marker": {"color": "#E59C58", "size": 7}, "mode": "lines+markers", "name": "South", "x": [0, 1, 2, 3, 4, 5, 6], "y": [2.99, 4.74, 0.01, 2.88, 9.25, 19.96, 210.92], "type": "scatter"}];
+    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#333333", "bordercolor": "#333333", "font": {"color": "#FFFFFF", "family": "DM Sans, sans-serif", "size": 13}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 12}, "itemsizing": "constant", "orientation": "h", "traceorder": "normal", "x": 0, "xanchor": "left", "y": 1.01, "yanchor": "bottom"}, "margin": {"b": 40, "l": 8, "pad": 4, "r": 20, "t": 10}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)", "xaxis": {"automargin": true, "showgrid": false, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "tickformat": "%-d %b", "ticks": ""}, "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": "", "zeroline": false}}}, "shapes": [{"fillcolor": "#81B1FE", "line": {"width": 0}, "opacity": 0.12, "type": "rect", "x0": -0.5, "x1": 3.5, "xref": "x", "y0": 0, "y1": 1, "yref": "y domain"}, {"fillcolor": "#F7C191", "line": {"width": 0}, "opacity": 0.15, "type": "rect", "x0": 3.5, "x1": 5.5, "xref": "x", "y0": 0, "y1": 1, "yref": "y domain"}, {"fillcolor": "#E03F61", "line": {"width": 0}, "opacity": 0.12, "type": "rect", "x0": 5.5, "x1": 6.5, "xref": "x", "y0": 0, "y1": 1, "yref": "y domain"}], "annotations": [{"font": {"color": "#5A6570", "size": 10}, "showarrow": false, "text": "Vertical demand curve", "x": -0.5, "xanchor": "left", "xref": "x", "y": 1, "yanchor": "top", "yref": "y domain"}, {"font": {"color": "#5A6570", "size": 10}, "showarrow": false, "text": "Seasonal auction", "x": 3.5, "xanchor": "left", "xref": "x", "y": 1, "yanchor": "top", "yref": "y domain"}, {"font": {"color": "#5A6570", "size": 10}, "showarrow": false, "text": "RBDC", "x": 5.5, "xanchor": "left", "xref": "x", "y": 1, "yanchor": "top", "yref": "y domain"}, {"arrowcolor": "#5A6570", "arrowhead": 2, "ax": 40, "ay": -40, "font": {"color": "#000000", "size": 11}, "showarrow": true, "text": "N/C hits CONE cap<br><b>$237/MW-day</b>", "x": 3, "y": 236.66}, {"arrowcolor": "#E03F61", "arrowhead": 2, "ax": -50, "ay": -30, "font": {"color": "#E03F61", "size": 12}, "showarrow": true, "text": "22x surge<br><b>$215/MW-day avg</b>", "x": 6, "y": 215.3}], "yaxis": {"tickprefix": "$", "tickformat": ",.0f", "rangemode": "tozero"}, "xaxis": {"tickvals": [0, 1, 2, 3, 4, 5, 6], "ticktext": ["2019", "2020", "2021", "2022", "2023", "2024", "2025"], "type": "linear"}};
+    var chartConfig = {
+      displayModeBar: false,
+      responsive: true,
+      staticPlot: false
+    };
+    Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig);
+
+    window.addEventListener('resize', function() {
+      Plotly.Plots.resize('plotly-chart');
+    });
+
+    // Report actual content height to parent for iframe auto-sizing.
+    // Parent listens for 'modo-chart-height' messages and resizes the iframe.
+    function reportHeight() {
+      var h = document.querySelector('.chart-wrapper').scrollHeight;
+      window.parent.postMessage({ type: 'modo-chart-height', height: h }, '*');
+    }
+    // Report after Plotly renders and on resize
+    setTimeout(reportHeight, 200);
+    setTimeout(reportHeight, 600);
+    window.addEventListener('resize', reportHeight);
+  </script>
+</body>
+</html>

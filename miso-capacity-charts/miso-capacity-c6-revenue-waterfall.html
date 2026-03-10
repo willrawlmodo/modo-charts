@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A 4-hour BESS earns <b>$75/kW-year</b> from MISO capacity alone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.0/plotly.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #FFFFFF;
+      color: #333333;
+    }
+
+    .chart-wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding: 24px 28px 18px 28px;
+    }
+
+    /* === HEADER === */
+    .chart-header {
+      margin-bottom: 4px;
+      flex-shrink: 0;
+    }
+    .chart-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 21px;
+      font-weight: 400;
+      line-height: 1.3;
+      color: #000000;
+      margin: 0;
+    }
+    .chart-title b {
+      font-weight: 700;
+    }
+    .chart-subtitle {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #5A6570;
+      margin-top: 6px;
+      line-height: 1.3;
+    }
+
+    /* === CHART === */
+    #plotly-chart {
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+    }
+
+    /* === FOOTER === */
+    .chart-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-top: 12px;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+      gap: 8px 24px;
+    }
+    .chart-source {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: #8E99A4;
+      line-height: 1.4;
+    }
+    .chart-note {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: #8E99A4;
+      line-height: 1.4;
+    }
+    .chart-footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+    .chart-wordmark {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #000000;
+      letter-spacing: 0.22em;
+      white-space: nowrap;
+      flex-shrink: 0;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="chart-wrapper">
+    <div class="chart-header">
+      <div class="chart-title">A 4-hour BESS earns <b>$75/kW-year</b> from MISO capacity alone</div>
+      <div class="chart-subtitle">Annual capacity revenue by season, weighted by 95% credit ($/kW-year)</div>
+    </div>
+
+    <div id="plotly-chart"></div>
+
+    <div class="chart-footer">
+      <div class="chart-footer-left">
+        <div class="chart-source">Source: MISO PRA Results, Modo Energy</div>
+        <div class="chart-note">Note: Calculated as clearing price x season days x 0.95 capacity credit. Summer = 77% of total. Duration beyond 4 hours adds no incremental capacity revenue in MISO.</div>
+      </div>
+      <div class="chart-wordmark">MODOENERGY</div>
+    </div>
+  </div>
+
+  <script>
+    var chartData = [{"connector": {"line": {"color": "#D0D0D0", "dash": "dot", "width": 1}}, "increasing": {"marker": {"color": "#E03F61", "line": {"color": "#333333", "width": 0.4}}}, "measure": ["relative", "relative", "relative", "relative", "total"], "text": ["$58", "$8", "$3", "$6", "$75"], "textfont": {"color": "#000000", "family": "DM Sans", "size": 13}, "textposition": "outside", "totals": {"marker": {"color": "#6F5FE5", "line": {"color": "#333333", "width": 0.4}}}, "x": ["Summer", "Fall", "Winter", "Spring", "Total"], "y": [58.2521, 7.918819999999999, 2.8386000000000005, 6.107511999999999, 75.117032], "type": "waterfall"}];
+    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#333333", "bordercolor": "#333333", "font": {"color": "#FFFFFF", "family": "DM Sans, sans-serif", "size": 13}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 12}, "itemsizing": "constant", "orientation": "h", "traceorder": "normal", "x": 0, "xanchor": "left", "y": 1.01, "yanchor": "bottom"}, "margin": {"b": 40, "l": 8, "pad": 4, "r": 20, "t": 10}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)", "xaxis": {"automargin": true, "showgrid": false, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "tickformat": "%-d %b", "ticks": ""}, "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": "", "zeroline": false}}}, "annotations": [{"font": {"color": "#FFFFFF", "size": 11}, "showarrow": false, "text": "78%", "x": "Summer", "y": 58.2521, "yshift": -15}, {"font": {"color": "#FFFFFF", "size": 11}, "showarrow": false, "text": "11%", "x": "Fall", "y": 66.17092, "yshift": -15}, {"font": {"color": "#FFFFFF", "size": 11}, "showarrow": false, "text": "4%", "x": "Winter", "y": 69.00952, "yshift": -15}, {"font": {"color": "#FFFFFF", "size": 11}, "showarrow": false, "text": "8%", "x": "Spring", "y": 75.117032, "yshift": -15}], "yaxis": {"tickprefix": "$", "tickformat": ",.0f", "ticksuffix": "/kW-yr", "rangemode": "tozero"}, "xaxis": {"type": "category"}};
+    var chartConfig = {
+      displayModeBar: false,
+      responsive: true,
+      staticPlot: false
+    };
+    Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig);
+
+    window.addEventListener('resize', function() {
+      Plotly.Plots.resize('plotly-chart');
+    });
+
+    // Report actual content height to parent for iframe auto-sizing.
+    // Parent listens for 'modo-chart-height' messages and resizes the iframe.
+    function reportHeight() {
+      var h = document.querySelector('.chart-wrapper').scrollHeight;
+      window.parent.postMessage({ type: 'modo-chart-height', height: h }, '*');
+    }
+    // Report after Plotly renders and on resize
+    setTimeout(reportHeight, 200);
+    setTimeout(reportHeight, 600);
+    window.addEventListener('resize', reportHeight);
+  </script>
+</body>
+</html>
