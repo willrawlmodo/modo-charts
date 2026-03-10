@@ -10,10 +10,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.0/plotly.min.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
+    html {
+      width: 100%;
+      height: 100%;
+    }
+    body {
       width: 100%;
       min-height: 100%;
-      overflow: auto;
+      overflow-x: hidden;
       font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #FFFFFF;
       color: #333333;
@@ -23,20 +27,20 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      min-height: 100%;
-      padding: 24px 24px 16px 24px;
+      padding: 24px 28px 18px 28px;
     }
 
     /* === HEADER === */
     .chart-header {
-      margin-bottom: 2px;
+      margin-bottom: 4px;
+      flex-shrink: 0;
     }
     .chart-title {
       font-family: 'DM Sans', sans-serif;
       font-size: 21px;
       font-weight: 400;
       line-height: 1.3;
-      color: #1B2A4A;
+      color: #000000;
       margin: 0;
     }
     .chart-title b {
@@ -44,7 +48,7 @@
     }
     .chart-subtitle {
       font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 400;
       color: #5A6570;
       margin-top: 6px;
@@ -63,14 +67,10 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      padding-top: 10px;
-      gap: 16px;
-    }
-    .chart-footer-left {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      flex: 1;
+      padding-top: 12px;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+      gap: 8px 24px;
     }
     .chart-source {
       font-family: 'DM Sans', sans-serif;
@@ -86,12 +86,19 @@
       color: #8E99A4;
       line-height: 1.4;
     }
+    .chart-footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
     .chart-wordmark {
       font-family: 'DM Sans', sans-serif;
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 700;
-      color: #1B2A4A;
-      letter-spacing: 0.25em;
+      color: #000000;
+      letter-spacing: 0.22em;
       white-space: nowrap;
       flex-shrink: 0;
       text-transform: uppercase;
@@ -117,8 +124,8 @@
   </div>
 
   <script>
-    var chartData = [{"cells": {"align": ["left", "center", "center"], "fill": {"color": [["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"], ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"], ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"]]}, "font": {"color": "#1B2A4A", "family": "DM Sans", "size": 12}, "height": 36, "line": {"color": "#E8E8E8", "width": 1}, "values": [["Internal Hub", "SEMASS (SE Mass.)", "NEMASSBOST (NE Mass./Boston)", "Connecticut", "Maine"], ["$126.09", "$127.13", "$126.87", "$122.91", "$114.10"], ["$127.49", "$127.79", "$128.04", "$124.54", "$108.80"]]}, "columnwidth": [2, 1.2, 1.2], "header": {"align": ["left", "center", "center"], "fill": {"color": "#F5F5F5"}, "font": {"color": "#1B2A4A", "family": "DM Sans", "size": 13}, "height": 40, "line": {"color": "#E8E8E8", "width": 1}, "values": ["<b>Zone</b>", "<b>DA average ($/MWh)</b>", "<b>RT average ($/MWh)</b>"]}, "type": "table"}];
-    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 12}, "hoverlabel": {"bgcolor": "#333333", "bordercolor": "#333333", "font": {"color": "#FFFFFF", "family": "DM Sans, sans-serif", "size": 13}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 13}, "itemsizing": "constant", "orientation": "h", "traceorder": "normal", "x": 0, "xanchor": "left", "y": 1.02, "yanchor": "bottom"}, "margin": {"b": 40, "l": 0, "pad": 0, "r": 20, "t": 10}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)", "xaxis": {"automargin": true, "showgrid": false, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 12}, "tickformat": "%-d %b", "ticks": ""}, "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 12}, "ticks": "", "zeroline": true, "zerolinecolor": "#D0D0D0", "zerolinewidth": 1}}}, "margin": {"l": 0, "r": 0, "t": 0, "b": 0}, "height": 230};
+    var chartData = [{"cells": {"align": ["left", "center", "center"], "fill": {"color": [["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"], ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"], ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"]]}, "font": {"color": "#000000", "family": "DM Sans", "size": 12}, "height": 36, "line": {"color": "#E8E8E8", "width": 1}, "values": [["Internal Hub", "SEMASS (SE Mass.)", "NEMASSBOST (NE Mass./Boston)", "Connecticut", "Maine"], ["$126.09", "$127.13", "$126.87", "$122.91", "$114.10"], ["$127.49", "$127.79", "$128.04", "$124.54", "$108.80"]]}, "columnwidth": [2, 1.2, 1.2], "header": {"align": ["left", "center", "center"], "fill": {"color": "#F5F5F5"}, "font": {"color": "#000000", "family": "DM Sans", "size": 13}, "height": 40, "line": {"color": "#E8E8E8", "width": 1}, "values": ["<b>Zone</b>", "<b>DA average ($/MWh)</b>", "<b>RT average ($/MWh)</b>"]}, "type": "table"}];
+    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#333333", "bordercolor": "#333333", "font": {"color": "#FFFFFF", "family": "DM Sans, sans-serif", "size": 13}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 12}, "itemsizing": "constant", "orientation": "h", "traceorder": "normal", "x": 0, "xanchor": "left", "y": 1.01, "yanchor": "bottom"}, "margin": {"b": 40, "l": 8, "pad": 4, "r": 20, "t": 10}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)", "xaxis": {"automargin": true, "showgrid": false, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "tickformat": "%-d %b", "ticks": ""}, "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": "", "zeroline": false}}}, "margin": {"l": 0, "r": 0, "t": 0, "b": 0}, "height": 222};
     var chartConfig = {
       displayModeBar: false,
       responsive: true,
@@ -129,6 +136,17 @@
     window.addEventListener('resize', function() {
       Plotly.Plots.resize('plotly-chart');
     });
+
+    // Report actual content height to parent for iframe auto-sizing.
+    // Parent listens for 'modo-chart-height' messages and resizes the iframe.
+    function reportHeight() {
+      var h = document.querySelector('.chart-wrapper').scrollHeight;
+      window.parent.postMessage({ type: 'modo-chart-height', height: h }, '*');
+    }
+    // Report after Plotly renders and on resize
+    setTimeout(reportHeight, 200);
+    setTimeout(reportHeight, 600);
+    window.addEventListener('resize', reportHeight);
   </script>
 </body>
 </html>
