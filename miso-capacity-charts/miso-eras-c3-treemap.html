@@ -124,51 +124,58 @@
   </div>
 
   <script>
-    var categories = ["Cycle 1", "Cycle 2", "Cycle 3", "Pending", "Available"];
-    var values = [10, 15, 15, 13, 15];
-    var gwLabels = ["5.3 GW", "6.9 GW", "8.8 GW", "8.5 GW", ""];
-    var colors = ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#E8EAED"];
-    var textColors = ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#8E99A4"];
-
-    var chartData = categories.map(function(cat, i) {
-      return {
-        name: cat,
-        type: "bar",
-        orientation: "h",
-        y: [""],
-        x: [values[i]],
-        text: [cat + (gwLabels[i] ? "<br>" + values[i] + " projects · " + gwLabels[i] : "<br>" + values[i] + " slots")],
-        textposition: "inside",
-        textfont: {family: "DM Sans", size: 13, color: textColors[i]},
-        insidetextanchor: "middle",
-        hovertemplate: "<b>" + cat + "</b><br>" + values[i] + " projects" + (gwLabels[i] ? " · " + gwLabels[i] : "") + "<extra></extra>",
-        marker: {
-          color: colors[i],
-          line: {width: 1.5, color: "#FFFFFF"}
+    var chartData = [{
+      type: "treemap",
+      labels: [
+        "ERAS 68-Project Cap",
+        "Cycle 1<br>10 projects<br>5.3 GW",
+        "Cycle 2<br>15 projects<br>6.9 GW",
+        "Cycle 3<br>15 projects<br>8.8 GW",
+        "Pending<br>13 projects<br>8.5 GW",
+        "Available<br>15 slots"
+      ],
+      parents: [
+        "",
+        "ERAS 68-Project Cap",
+        "ERAS 68-Project Cap",
+        "ERAS 68-Project Cap",
+        "ERAS 68-Project Cap",
+        "ERAS 68-Project Cap"
+      ],
+      values: [68, 10, 15, 15, 13, 15],
+      textinfo: "label",
+      textposition: "middle center",
+      textfont: {
+        family: "DM Sans",
+        size: [0, 16, 18, 18, 16, 16],
+        color: ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#8E99A4"]
+      },
+      marker: {
+        colors: [
+          "#FFFFFF",
+          "#6F5FE5",
+          "#E03F61",
+          "#E59C58",
+          "#467EE4",
+          "#F0F1F3"
+        ],
+        line: {
+          width: 3,
+          color: "#FFFFFF"
         }
-      };
-    });
+      },
+      hovertemplate: "<b>%{label}</b><extra></extra>",
+      pathbar: {visible: false},
+      branchvalues: "total",
+      tiling: {packing: "squarify"}
+    }];
 
     var chartLayout = {
       font: {color: "#5A6570", family: "DM Sans, sans-serif", size: 13},
-      height: 180,
-      barmode: "stack",
-      margin: {b: 10, l: 10, r: 10, t: 10},
+      height: 420,
+      margin: {b: 0, l: 0, r: 0, t: 0},
       paper_bgcolor: "rgba(0,0,0,0)",
-      plot_bgcolor: "rgba(0,0,0,0)",
-      xaxis: {visible: false, range: [0, 68]},
-      yaxis: {visible: false},
-      legend: {
-        orientation: "h",
-        yanchor: "bottom",
-        y: 1.02,
-        xanchor: "left",
-        x: 0,
-        font: {size: 12, color: "#5A6570"},
-        itemsizing: "constant",
-        traceorder: "normal"
-      },
-      showlegend: true
+      plot_bgcolor: "rgba(0,0,0,0)"
     };
 
     var chartConfig = {
@@ -177,11 +184,7 @@
       staticPlot: false
     };
 
-    Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig).then(function() {
-      document.querySelectorAll('.legendpoints path').forEach(function(el) {
-        el.style.strokeWidth = '0';
-      });
-    });
+    Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig);
 
     window.addEventListener('resize', function() {
       Plotly.Plots.resize('plotly-chart');
