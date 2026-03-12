@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MISO ERAS has used 53 of its 68 project slots, leaving room for roughly one more cycle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.0/plotly.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #FFFFFF;
+      color: #333333;
+    }
+
+    .chart-wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding: 24px 28px 18px 28px;
+    }
+
+    /* === HEADER === */
+    .chart-header {
+      margin-bottom: 4px;
+      flex-shrink: 0;
+    }
+    .chart-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 21px;
+      font-weight: 400;
+      line-height: 1.3;
+      color: #000000;
+      margin: 0;
+    }
+    .chart-title b {
+      font-weight: 700;
+    }
+    .chart-subtitle {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #5A6570;
+      margin-top: 6px;
+      line-height: 1.3;
+    }
+
+    /* === CHART === */
+    #plotly-chart {
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+    }
+
+    /* === FOOTER === */
+    .chart-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-top: 12px;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+      gap: 8px 24px;
+    }
+    .chart-source {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: #8E99A4;
+      line-height: 1.4;
+    }
+    .chart-note {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: #8E99A4;
+      line-height: 1.4;
+    }
+    .chart-footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+    .chart-wordmark {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #000000;
+      letter-spacing: 0.22em;
+      white-space: nowrap;
+      flex-shrink: 0;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="chart-wrapper">
+    <div class="chart-header">
+      <div class="chart-title">MISO ERAS has filled <b>53 of 68</b> project slots, leaving room for roughly <b>one more cycle</b></div>
+      <div class="chart-subtitle">ERAS project slots by status and cycle</div>
+    </div>
+
+    <div id="plotly-chart"></div>
+
+    <div class="chart-footer">
+      <div class="chart-footer-left">
+        <div class="chart-source">Source: MISO ERAS Interconnection Requests and Tariff Filings (March 2026), Modo Energy</div>
+        <div class="chart-note">Note: 12 pending applications (7.4 GW) have been submitted but not all will fit in remaining slots. Program sunsets August 31, 2027.</div>
+      </div>
+      <div class="chart-wordmark">MODOENERGY</div>
+    </div>
+  </div>
+
+  <script>
+    var chartData = [{
+      type: "treemap",
+      labels: [
+        "68 Project Cap",
+        "Cycle 1<br>(10 projects)",
+        "Cycle 2<br>(15 projects)",
+        "Cycle 3<br>(15 projects)",
+        "Other Active<br>(12 projects)",
+        "Under Review<br>(1 project)",
+        "Available<br>(15 slots)"
+      ],
+      parents: [
+        "",
+        "68 Project Cap",
+        "68 Project Cap",
+        "68 Project Cap",
+        "68 Project Cap",
+        "68 Project Cap",
+        "68 Project Cap"
+      ],
+      values: [68, 10, 15, 15, 12, 1, 15],
+      text: ["", "4.7 GW", "6.1 GW", "8.0 GW", "7.5 GW", "", ""],
+      textinfo: "label+text",
+      textfont: {
+        family: "DM Sans",
+        size: 14,
+        color: "#FFFFFF"
+      },
+      marker: {
+        colors: [
+          "#FFFFFF",
+          "#B84233",
+          "#A074FB",
+          "#467EE4",
+          "#5A6570",
+          "#8E99A4",
+          "#E8EAED"
+        ],
+        line: {
+          width: 2,
+          color: "#FFFFFF"
+        }
+      },
+      hovertemplate: "<b>%{label}</b><br>%{text}<extra></extra>",
+      pathbar: {visible: false},
+      branchvalues: "total"
+    }];
+
+    var chartLayout = {
+      font: {color: "#5A6570", family: "DM Sans, sans-serif", size: 13},
+      margin: {b: 10, l: 10, r: 10, t: 10},
+      paper_bgcolor: "rgba(0,0,0,0)",
+      plot_bgcolor: "rgba(0,0,0,0)",
+      treemapcolorway: ["#B84233", "#A074FB", "#467EE4", "#5A6570", "#8E99A4", "#E8EAED"]
+    };
+
+    var chartConfig = {
+      displayModeBar: false,
+      responsive: true,
+      staticPlot: false
+    };
+
+    Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig);
+
+    window.addEventListener('resize', function() {
+      Plotly.Plots.resize('plotly-chart');
+    });
+
+    function reportHeight() {
+      var h = document.querySelector('.chart-wrapper').scrollHeight;
+      window.parent.postMessage({ type: 'modo-chart-height', height: h }, '*');
+    }
+    setTimeout(reportHeight, 200);
+    setTimeout(reportHeight, 600);
+    window.addEventListener('resize', reportHeight);
+  </script>
+</body>
+</html>
