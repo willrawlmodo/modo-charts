@@ -131,6 +131,7 @@
         "Cycle 1<br>10 projects<br>5.3 GW",
         "Cycle 2<br>15 projects<br>6.9 GW",
         "Cycle 3<br>15 projects<br>8.8 GW",
+        "Remaining<br>28 slots",
         "Pending<br>13 projects<br>8.5 GW",
         "Available<br>15 slots"
       ],
@@ -140,9 +141,10 @@
         "ERAS 68-Project Cap",
         "ERAS 68-Project Cap",
         "ERAS 68-Project Cap",
-        "ERAS 68-Project Cap"
+        "Remaining<br>28 slots",
+        "Remaining<br>28 slots"
       ],
-      values: [68, 10, 15, 15, 13, 15],
+      values: [68, 10, 15, 15, 28, 13, 15],
       textinfo: "label",
       textposition: "middle center",
       textfont: {
@@ -153,7 +155,7 @@
       insidetextfont: {
         family: "DM Sans",
         size: 16,
-        color: ["rgba(0,0,0,0)", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#8E99A4"]
+        color: ["rgba(0,0,0,0)", "#FFFFFF", "#FFFFFF", "#FFFFFF", "rgba(0,0,0,0)", "#FFFFFF", "#8E99A4"]
       },
       marker: {
         colors: [
@@ -161,6 +163,7 @@
           "#6F5FE5",
           "#E03F61",
           "#E59C58",
+          "#FFFFFF",
           "#467EE4",
           "#F0F1F3"
         ],
@@ -172,7 +175,8 @@
       hovertemplate: "<b>%{label}</b><extra></extra>",
       pathbar: {visible: false},
       branchvalues: "total",
-      tiling: {packing: "squarify"}
+      tiling: {packing: "squarify"},
+      sort: false
     }];
 
     var chartLayout = {

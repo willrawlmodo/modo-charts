@@ -129,7 +129,9 @@
         "name": "Natural Gas",
         "x": ["Cycle 1", "Cycle 2", "Cycle 3", "Pending"],
         "y": [4.308, 4.845, 6.425, 6.089],
-        "textposition": "none",
+        "text": ["82%", "71%", "73%", "75%"],
+        "textposition": "inside",
+        "textfont": {"color": "#000000", "family": "DM Sans", "size": 13},
         "hovertemplate": "<b>Natural Gas</b><br>%{x}: %{y:,.1f} GW (%{customdata}%)<extra></extra>",
         "customdata": [82, 71, 73, 75],
         "marker": {"color": "#E59C58", "line": {"width": 2, "color": "#000000"}},
@@ -139,7 +141,9 @@
         "name": "Battery Energy Storage",
         "x": ["Cycle 1", "Cycle 2", "Cycle 3", "Pending"],
         "y": [0.091, 0.898, 2.340, 1.160],
-        "textposition": "none",
+        "text": ["", "13%", "27%", "14%"],
+        "textposition": "inside",
+        "textfont": {"color": "#000000", "family": "DM Sans", "size": 13},
         "hovertemplate": "<b>Battery Energy Storage</b><br>%{x}: %{y:,.1f} GW (%{customdata}%)<extra></extra>",
         "customdata": [2, 13, 27, 14],
         "marker": {"color": "#A074FB", "line": {"width": 2, "color": "#000000"}},
@@ -149,7 +153,9 @@
         "name": "Solar",
         "x": ["Cycle 1", "Cycle 2", "Cycle 3", "Pending"],
         "y": [0.525, 0.499, 0.0, 0.916],
-        "textposition": "none",
+        "text": ["10%", "", "", "11%"],
+        "textposition": "inside",
+        "textfont": {"color": "#000000", "family": "DM Sans", "size": 13},
         "hovertemplate": "<b>Solar</b><br>%{x}: %{y:,.1f} GW (%{customdata}%)<extra></extra>",
         "customdata": [10, 7, 0, 11],
         "marker": {"color": "#FFE300", "line": {"width": 2, "color": "#000000"}},
@@ -159,6 +165,7 @@
         "name": "Wind",
         "x": ["Cycle 1", "Cycle 2", "Cycle 3", "Pending"],
         "y": [0.360, 0.619, 0.0, 0.0],
+        "text": ["", "", "", ""],
         "textposition": "none",
         "hovertemplate": "<b>Wind</b><br>%{x}: %{y:,.1f} GW (%{customdata}%)<extra></extra>",
         "customdata": [7, 9, 0, 0],
@@ -194,6 +201,9 @@
     Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig).then(function() {
       document.querySelectorAll('.legendpoints path').forEach(function(el) {
         el.style.strokeWidth = '0';
+      });
+      document.querySelectorAll('.bars .bartext .bartext-inside').forEach(function(el) {
+        el.style.textShadow = '0 0 4px #FFFFFF, 0 0 4px #FFFFFF, 0 0 6px #FFFFFF';
       });
     });
 
