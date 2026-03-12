@@ -127,48 +127,48 @@
     var chartData = [
       {
         "name": "Natural Gas",
-        "x": ["Cycle 1", "Cycle 2", "Cycle 3", "Pending"],
-        "y": [4.308, 4.845, 6.425, 6.089],
-        "text": ["82%", "71%", "73%", "75%"],
+        "x": ["Cycle 3", "Pending", "Cycle 2", "Cycle 1"],
+        "y": [6.425, 6.089, 4.845, 4.308],
+        "text": ["73%", "75%", "71%", "82%"],
         "textposition": "inside",
-        "textfont": {"color": "#000000", "family": "DM Sans", "size": 13},
+        "textfont": {"color": "#FFFFFF", "family": "DM Sans", "size": 14},
         "hovertemplate": "<b>Natural Gas</b><br>%{x}: %{y:,.1f} GW (%{customdata}%)<extra></extra>",
-        "customdata": [82, 71, 73, 75],
+        "customdata": [73, 75, 71, 82],
         "marker": {"color": "#E59C58", "line": {"width": 2, "color": "#000000"}},
         "type": "bar"
       },
       {
         "name": "Battery Energy Storage",
-        "x": ["Cycle 1", "Cycle 2", "Cycle 3", "Pending"],
-        "y": [0.091, 0.898, 2.340, 1.160],
-        "text": ["", "13%", "27%", "14%"],
+        "x": ["Cycle 3", "Pending", "Cycle 2", "Cycle 1"],
+        "y": [2.340, 1.160, 0.898, 0.091],
+        "text": ["27%", "14%", "13%", ""],
         "textposition": "inside",
-        "textfont": {"color": "#000000", "family": "DM Sans", "size": 13},
+        "textfont": {"color": "#FFFFFF", "family": "DM Sans", "size": 14},
         "hovertemplate": "<b>Battery Energy Storage</b><br>%{x}: %{y:,.1f} GW (%{customdata}%)<extra></extra>",
-        "customdata": [2, 13, 27, 14],
+        "customdata": [27, 14, 13, 2],
         "marker": {"color": "#A074FB", "line": {"width": 2, "color": "#000000"}},
         "type": "bar"
       },
       {
         "name": "Solar",
-        "x": ["Cycle 1", "Cycle 2", "Cycle 3", "Pending"],
-        "y": [0.525, 0.499, 0.0, 0.916],
-        "text": ["10%", "", "", "11%"],
+        "x": ["Cycle 3", "Pending", "Cycle 2", "Cycle 1"],
+        "y": [0.0, 0.916, 0.499, 0.525],
+        "text": ["", "11%", "", "10%"],
         "textposition": "inside",
-        "textfont": {"color": "#000000", "family": "DM Sans", "size": 13},
+        "textfont": {"color": "#FFFFFF", "family": "DM Sans", "size": 14},
         "hovertemplate": "<b>Solar</b><br>%{x}: %{y:,.1f} GW (%{customdata}%)<extra></extra>",
-        "customdata": [10, 7, 0, 11],
+        "customdata": [0, 11, 7, 10],
         "marker": {"color": "#FFE300", "line": {"width": 2, "color": "#000000"}},
         "type": "bar"
       },
       {
         "name": "Wind",
-        "x": ["Cycle 1", "Cycle 2", "Cycle 3", "Pending"],
-        "y": [0.360, 0.619, 0.0, 0.0],
+        "x": ["Cycle 3", "Pending", "Cycle 2", "Cycle 1"],
+        "y": [0.0, 0.0, 0.619, 0.360],
         "text": ["", "", "", ""],
         "textposition": "none",
         "hovertemplate": "<b>Wind</b><br>%{x}: %{y:,.1f} GW (%{customdata}%)<extra></extra>",
-        "customdata": [7, 9, 0, 0],
+        "customdata": [0, 0, 9, 7],
         "marker": {"color": "#81B1FE", "line": {"width": 2, "color": "#000000"}},
         "type": "bar"
       }
@@ -201,25 +201,6 @@
     Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig).then(function() {
       document.querySelectorAll('.legendpoints path').forEach(function(el) {
         el.style.strokeWidth = '0';
-      });
-      // SVG filter for white glow behind labels
-      var svg = document.querySelector('#plotly-chart .main-svg');
-      if (svg) {
-        var defs = svg.querySelector('defs') || svg.insertBefore(document.createElementNS('http://www.w3.org/2000/svg','defs'), svg.firstChild);
-        var filter = document.createElementNS('http://www.w3.org/2000/svg','filter');
-        filter.setAttribute('id','white-glow');
-        filter.setAttribute('x','-20%');
-        filter.setAttribute('y','-20%');
-        filter.setAttribute('width','140%');
-        filter.setAttribute('height','140%');
-        filter.innerHTML = '<feFlood flood-color="#FFFFFF" flood-opacity="1" result="flood"/>' +
-          '<feComposite in="flood" in2="SourceGraphic" operator="in" result="mask"/>' +
-          '<feGaussianBlur in="mask" stdDeviation="3" result="blur"/>' +
-          '<feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>';
-        defs.appendChild(filter);
-      }
-      document.querySelectorAll('.bartext-inside').forEach(function(el) {
-        el.setAttribute('filter','url(#white-glow)');
       });
     });
 
