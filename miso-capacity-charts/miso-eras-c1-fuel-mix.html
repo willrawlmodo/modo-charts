@@ -133,7 +133,7 @@
         "textfont": {"color": "white", "family": "DM Sans", "size": 12},
         "textposition": "inside",
         "hovertemplate": "<b>Natural Gas</b><br>%{x}: %{y:,.1f} GW<extra></extra>",
-        "marker": {"color": "#E59C58", "line": {"width": 1, "color": "#000000"}},
+        "marker": {"color": "#B84233", "line": {"width": 1, "color": "#000000"}},
         "type": "bar"
       },
       {
@@ -195,7 +195,11 @@
       responsive: true,
       staticPlot: false
     };
-    Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig);
+    Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig).then(function() {
+      document.querySelectorAll('.legendpoints path').forEach(function(el) {
+        el.style.strokeWidth = '0';
+      });
+    });
 
     window.addEventListener('resize', function() {
       Plotly.Plots.resize('plotly-chart');

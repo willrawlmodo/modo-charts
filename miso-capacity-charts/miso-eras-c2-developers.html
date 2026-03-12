@@ -108,7 +108,7 @@
 <body>
   <div class="chart-wrapper">
     <div class="chart-header">
-      <div class="chart-title"><b>Northern Indiana Public Service Company (NIPSCO)</b> leads MISO ERAS Cycle 3 with <b>3.1 GW</b> across natural gas and battery storage</div>
+      <div class="chart-title"><b>Northern Indiana (NIPSCO)</b> leads MISO ERAS Cycle 3 with <b>3.1 GW</b> across natural gas and battery energy storage</div>
       <div class="chart-subtitle">Cycle 3 capacity by developer and fuel type (GW)</div>
     </div>
 
@@ -131,7 +131,7 @@
         "x": [0.049, 0.0, 0.15, 0.0, 0.0, 0.25, 0.0, 0.0, 0.464, 0.0, 0.75, 1.531, 2.639],
         "orientation": "h",
         "hovertemplate": "<b>Natural Gas</b><br>%{y}: %{x:,.3f} GW<extra></extra>",
-        "marker": {"color": "#E59C58", "line": {"width": 1, "color": "#000000"}},
+        "marker": {"color": "#B84233", "line": {"width": 1, "color": "#000000"}},
         "type": "bar"
       },
       {
@@ -170,7 +170,11 @@
       responsive: true,
       staticPlot: false
     };
-    Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig);
+    Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig).then(function() {
+      document.querySelectorAll('.legendpoints path').forEach(function(el) {
+        el.style.strokeWidth = '0';
+      });
+    });
 
     window.addEventListener('resize', function() {
       Plotly.Plots.resize('plotly-chart');
