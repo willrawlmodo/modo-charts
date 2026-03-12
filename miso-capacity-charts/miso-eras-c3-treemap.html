@@ -117,67 +117,58 @@
     <div class="chart-footer">
       <div class="chart-footer-left">
         <div class="chart-source">Source: MISO ERAS Interconnection Requests and Tariff Filings (March 2026), Modo Energy</div>
-        <div class="chart-note">Note: 12 pending applications (7.4 GW) have been submitted but not all will fit in remaining slots. Program sunsets August 31, 2027.</div>
+        <div class="chart-note">Note: 13 pending applications (8.5 GW) have been submitted but not all will fit in remaining slots. Program sunsets August 31, 2027.</div>
       </div>
       <div class="chart-wordmark">MODOENERGY</div>
     </div>
   </div>
 
   <script>
-    var chartData = [{
-      type: "treemap",
-      labels: [
-        "68 Project Cap",
-        "Cycle 1",
-        "Cycle 2",
-        "Cycle 3",
-        "Pending",
-        "Available"
-      ],
-      parents: [
-        "",
-        "68 Project Cap",
-        "68 Project Cap",
-        "68 Project Cap",
-        "68 Project Cap",
-        "68 Project Cap"
-      ],
-      values: [68, 10, 15, 15, 13, 15],
-      text: ["", "10 projects · 5.3 GW", "15 projects · 6.9 GW", "15 projects · 8.8 GW", "13 projects · 8.5 GW", "15 slots"],
-      tiling: {packing: "squarify", squarifyratio: 1},
-      textinfo: "label+text",
-      texttemplate: "%{label}<br>%{text}",
-      textfont: {
-        family: "DM Sans",
-        size: 14,
-        color: "#FFFFFF"
-      },
-      marker: {
-        colors: [
-          "#FFFFFF",
-          "#D08030",
-          "#A074FB",
-          "#467EE4",
-          "#5A6570",
-          "#E8EAED"
-        ],
-        line: {
-          width: 2,
-          color: "#FFFFFF"
+    var categories = ["Cycle 1", "Cycle 2", "Cycle 3", "Pending", "Available"];
+    var values = [10, 15, 15, 13, 15];
+    var gwLabels = ["5.3 GW", "6.9 GW", "8.8 GW", "8.5 GW", ""];
+    var colors = ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#E8EAED"];
+    var textColors = ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#8E99A4"];
+
+    var chartData = categories.map(function(cat, i) {
+      return {
+        name: cat,
+        type: "bar",
+        orientation: "h",
+        y: [""],
+        x: [values[i]],
+        text: [cat + (gwLabels[i] ? "<br>" + values[i] + " projects · " + gwLabels[i] : "<br>" + values[i] + " slots")],
+        textposition: "inside",
+        textfont: {family: "DM Sans", size: 13, color: textColors[i]},
+        insidetextanchor: "middle",
+        hovertemplate: "<b>" + cat + "</b><br>" + values[i] + " projects" + (gwLabels[i] ? " · " + gwLabels[i] : "") + "<extra></extra>",
+        marker: {
+          color: colors[i],
+          line: {width: 1.5, color: "#FFFFFF"}
         }
-      },
-      hovertemplate: "<b>%{label}</b><br>%{text}<extra></extra>",
-      pathbar: {visible: false},
-      branchvalues: "total"
-    }];
+      };
+    });
 
     var chartLayout = {
       font: {color: "#5A6570", family: "DM Sans, sans-serif", size: 13},
-      height: 400,
+      height: 180,
+      barmode: "stack",
       margin: {b: 10, l: 10, r: 10, t: 10},
       paper_bgcolor: "rgba(0,0,0,0)",
       plot_bgcolor: "rgba(0,0,0,0)",
-      treemapcolorway: ["#D08030", "#A074FB", "#467EE4", "#5A6570", "#8E99A4", "#E8EAED"]
+      xaxis: {visible: false, range: [0, 68]},
+      yaxis: {visible: false},
+      legend: {
+        orientation: "h",
+        yanchor: "bottom",
+        y: 1.02,
+        xanchor: "left",
+        x: 0,
+        font: {size: 12, color: "#5A6570"},
+        itemsizing: "constant",
+        traceorder: "normal"
+      },
+      showlegend: true
     };
 
     var chartConfig = {
@@ -186,7 +177,11 @@
       staticPlot: false
     };
 
-    Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig);
+    Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig).then(function() {
+      document.querySelectorAll('.legendpoints path').forEach(function(el) {
+        el.style.strokeWidth = '0';
+      });
+    });
 
     window.addEventListener('resize', function() {
       Plotly.Plots.resize('plotly-chart');
