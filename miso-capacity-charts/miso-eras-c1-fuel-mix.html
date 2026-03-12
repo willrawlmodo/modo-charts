@@ -202,8 +202,24 @@
       document.querySelectorAll('.legendpoints path').forEach(function(el) {
         el.style.strokeWidth = '0';
       });
-      document.querySelectorAll('.bars .bartext .bartext-inside').forEach(function(el) {
-        el.style.textShadow = '0 0 6px #FFFFFF, 0 0 6px #FFFFFF, 0 0 10px #FFFFFF, 0 0 10px #FFFFFF';
+      // SVG filter for white glow behind labels
+      var svg = document.querySelector('#plotly-chart .main-svg');
+      if (svg) {
+        var defs = svg.querySelector('defs') || svg.insertBefore(document.createElementNS('http://www.w3.org/2000/svg','defs'), svg.firstChild);
+        var filter = document.createElementNS('http://www.w3.org/2000/svg','filter');
+        filter.setAttribute('id','white-glow');
+        filter.setAttribute('x','-20%');
+        filter.setAttribute('y','-20%');
+        filter.setAttribute('width','140%');
+        filter.setAttribute('height','140%');
+        filter.innerHTML = '<feFlood flood-color="#FFFFFF" flood-opacity="1" result="flood"/>' +
+          '<feComposite in="flood" in2="SourceGraphic" operator="in" result="mask"/>' +
+          '<feGaussianBlur in="mask" stdDeviation="3" result="blur"/>' +
+          '<feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>';
+        defs.appendChild(filter);
+      }
+      document.querySelectorAll('.bartext-inside').forEach(function(el) {
+        el.setAttribute('filter','url(#white-glow)');
       });
     });
 
