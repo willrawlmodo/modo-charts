@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Battery storage's share of ERAS capacity has grown from 2% to 27%</title>
+  <title>In MISO, duration beyond 4 hours adds zero incremental capacity credit</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -108,57 +108,52 @@
 <body>
   <div class="chart-wrapper">
     <div class="chart-header">
-      <div class="chart-title">Battery storage's share of MISO ERAS capacity has grown from <b>2%</b> in Cycle 1 to <b>27%</b> in Cycle 3</div>
-      <div class="chart-subtitle">Share of ERAS capacity by fuel type and cycle (%)</div>
+      <div class="chart-title">In MISO, duration beyond <b>4 hours</b> adds zero incremental capacity credit</div>
+      <div class="chart-subtitle">BESS capacity credit by duration and ISO (% of nameplate)</div>
     </div>
 
     <div id="plotly-chart"></div>
 
     <div class="chart-footer">
       <div class="chart-footer-left">
-        <div class="chart-source">Source: MISO ERAS Interconnection Requests (March 2026), Modo Energy</div>
-        <div class="chart-note">Note: Cycle 3 contains no solar or wind. Percentages reflect approved capacity only.</div>
+        <div class="chart-source">Source: MISO BPM-011, MISO PY 2026-27 LOLE Study, PJM, NYISO, Modo Energy</div>
+        <div class="chart-note">Note: *MISO 2-hour credit is estimated (~50%); no official BPM-011 figure published. MISO default credit applies pre-DLOL (PY 2025-26). PJM uses marginal ELCC (2027/28 BRA). NYISO shows range across zones (RoS to Long Island). MISO's flat 95% for 4h+ is unique among US ISOs.</div>
       </div>
       <div class="chart-wordmark">MODOENERGY</div>
     </div>
   </div>
 
   <script>
-    var chartData = [
-      {
-        "name": "Natural Gas",
-        "x": ["Cycle 1", "Cycle 2", "Cycle 3"],
-        "y": [81.5, 70.6, 73.3],
-        "text": ["82%", "71%", "73%"],
-        "textfont": {"color": "white", "family": "DM Sans", "size": 13},
-        "textposition": "inside",
-        "hovertemplate": "<b>Natural Gas</b><br>%{x}: %{y:.1f}%<extra></extra>",
-        "marker": {"color": "#D08030", "line": {"width": 2, "color": "#000000"}},
-        "type": "bar"
+    var chartData = [{
+      "type": "table",
+      "columnwidth": [1.2, 1, 1, 1.2],
+      "header": {
+        "values": ["<b>Duration</b>", "<b>MISO</b>", "<b>PJM</b>", "<b>NYISO</b>"],
+        "align": ["left", "center", "center", "center"],
+        "fill": {"color": "#F5F5F5"},
+        "font": {"color": "#000000", "family": "DM Sans", "size": 13},
+        "height": 40,
+        "line": {"color": "#E8E8E8", "width": 1}
       },
-      {
-        "name": "Battery Energy Storage",
-        "x": ["Cycle 1", "Cycle 2", "Cycle 3"],
-        "y": [1.7, 13.1, 26.7],
-        "text": ["2%", "13%", "27%"],
-        "textfont": {"color": "white", "family": "DM Sans", "size": 13},
-        "textposition": "inside",
-        "hovertemplate": "<b>Battery Energy Storage</b><br>%{x}: %{y:.1f}%<extra></extra>",
-        "marker": {"color": "#A074FB", "line": {"width": 2, "color": "#000000"}},
-        "type": "bar"
-      },
-      {
-        "name": "Solar + Wind",
-        "x": ["Cycle 1", "Cycle 2", "Cycle 3"],
-        "y": [16.7, 16.3, 0.0],
-        "text": ["17%", "16%", ""],
-        "textfont": {"color": "white", "family": "DM Sans", "size": 13},
-        "textposition": "inside",
-        "hovertemplate": "<b>Solar + Wind</b><br>%{x}: %{y:.1f}%<extra></extra>",
-        "marker": {"color": "#467EE4", "line": {"width": 2, "color": "#000000"}},
-        "type": "bar"
+      "cells": {
+        "values": [
+          ["2-hour", "4-hour", "6-hour", "8-hour"],
+          ["~50%*", "95%", "95%", "95%"],
+          ["39%", "58%", "65%", "70%"],
+          ["53\u201374%", "79\u201387%", "86\u201395%", "96\u201399%"]
+        ],
+        "align": ["left", "center", "center", "center"],
+        "fill": {"color": [
+          ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"],
+          ["#FFFFFF", "#EDE9FC", "#EDE9FC", "#EDE9FC"],
+          ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"],
+          ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"]
+        ]},
+        "font": {"color": "#000000", "family": "DM Sans", "size": 12},
+        "height": 40,
+        "line": {"color": "#E8E8E8", "width": 1}
       }
-    ];
+    }];
     var chartLayout = {
       "template": {
         "layout": {
@@ -174,21 +169,15 @@
           "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": "", "zeroline": false}
         }
       },
-      "barmode": "stack",
-      "xaxis": {"type": "category"},
-      "yaxis": {"range": [0, 105], "ticksuffix": "%"},
-      "legend": {"orientation": "h", "yanchor": "bottom", "y": 1.01, "xanchor": "left", "x": 0}
+      "margin": {"l": 0, "r": 0, "t": 0, "b": 0},
+      "height": 222
     };
     var chartConfig = {
       displayModeBar: false,
       responsive: true,
       staticPlot: false
     };
-    Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig).then(function() {
-      document.querySelectorAll('.legendpoints path').forEach(function(el) {
-        el.style.strokeWidth = '0';
-      });
-    });
+    Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig);
 
     window.addEventListener('resize', function() {
       Plotly.Plots.resize('plotly-chart');
