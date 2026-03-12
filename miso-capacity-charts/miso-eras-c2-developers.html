@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NIPSCO accounts for 3.1 GW of Cycle 3 capacity across gas and storage</title>
+  <title>NIPSCO accounts for 3.3 GW of Cycle 3 capacity across gas and storage</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -108,7 +108,7 @@
 <body>
   <div class="chart-wrapper">
     <div class="chart-header">
-      <div class="chart-title"><b>Northern Indiana (NIPSCO)</b> leads MISO ERAS Cycle 3 with <b>3.1 GW</b> across natural gas and battery energy storage</div>
+      <div class="chart-title"><b>Northern Indiana (NIPSCO)</b> leads MISO ERAS Cycle 3 with <b>3.3 GW</b> across natural gas and battery energy storage</div>
       <div class="chart-subtitle">Cycle 3 capacity by developer and fuel type (GW)</div>
     </div>
 
@@ -117,7 +117,7 @@
     <div class="chart-footer">
       <div class="chart-footer-left">
         <div class="chart-source">Source: MISO ERAS Interconnection Requests (March 2026), Modo Energy</div>
-        <div class="chart-note">Note: NIPSCO's Schahfer Project (2.6 GW natural gas) is the largest individual ERAS application to date.</div>
+        <div class="chart-note">Note: NIPSCO's Schahfer Project (2.7 GW natural gas) is the largest individual ERAS application to date.</div>
       </div>
       <div class="chart-wordmark">MODOENERGY</div>
     </div>
@@ -127,8 +127,8 @@
     var chartData = [
       {
         "name": "Natural Gas",
-        "y": ["Rochester Public Utilities", "Hackett Energy Storage", "Alliant Energy (WPL)", "DTE Electric", "Swift Energy Storage", "Basin Electric", "Brickyard Energy Storage", "NextEra Energy", "Entergy Texas", "Xcel Energy", "Alliant Energy (IPL)", "Entergy Louisiana", "NIPSCO (Northern Indiana)"],
-        "x": [0.049, 0.0, 0.15, 0.0, 0.0, 0.25, 0.0, 0.0, 0.464, 0.0, 0.75, 1.531, 2.639],
+        "y": ["Rochester Public Utilities", "Hackett Energy Storage", "DTE Electric", "Swift Energy Storage", "Basin Electric", "Brickyard Energy Storage", "NextEra Energy", "Alliant Energy (WPL)", "Entergy Texas", "Xcel Energy", "Alliant Energy (IPL)", "Entergy Louisiana", "NIPSCO (Northern Indiana)"],
+        "x": [0.050, 0.0, 0.0, 0.0, 0.265, 0.0, 0.0, 0.455, 0.478, 0.0, 0.798, 1.640, 2.740],
         "orientation": "h",
         "hovertemplate": "<b>Natural Gas</b><br>%{y}: %{x:,.3f} GW<extra></extra>",
         "marker": {"color": "#B84233", "line": {"width": 1, "color": "#000000"}},
@@ -136,8 +136,8 @@
       },
       {
         "name": "Battery Energy Storage",
-        "y": ["Rochester Public Utilities", "Hackett Energy Storage", "Alliant Energy (WPL)", "DTE Electric", "Swift Energy Storage", "Basin Electric", "Brickyard Energy Storage", "NextEra Energy", "Entergy Texas", "Xcel Energy", "Alliant Energy (IPL)", "Entergy Louisiana", "NIPSCO (Northern Indiana)"],
-        "x": [0.0, 0.1, 0.0, 0.2, 0.2, 0.0, 0.3, 0.3, 0.0, 0.6, 0.0, 0.0, 0.5],
+        "y": ["Rochester Public Utilities", "Hackett Energy Storage", "DTE Electric", "Swift Energy Storage", "Basin Electric", "Brickyard Energy Storage", "NextEra Energy", "Alliant Energy (WPL)", "Entergy Texas", "Xcel Energy", "Alliant Energy (IPL)", "Entergy Louisiana", "NIPSCO (Northern Indiana)"],
+        "x": [0.0, 0.104, 0.248, 0.214, 0.0, 0.310, 0.310, 0.0, 0.0, 0.628, 0.0, 0.0, 0.527],
         "orientation": "h",
         "hovertemplate": "<b>Battery Energy Storage</b><br>%{y}: %{x:,.3f} GW<extra></extra>",
         "marker": {"color": "#A074FB", "line": {"width": 1, "color": "#000000"}},
