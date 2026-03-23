@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Summer captures <b>77%</b> of annual capacity value at <b>$666.50/MW-day</b></title>
+  <title>Summer captures <b>78%</b> of annual capacity value at <b>$666/MW-day</b></title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -64,12 +64,11 @@
 
     /* === FOOTER === */
     .chart-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
       padding-top: 12px;
       flex-shrink: 0;
-      flex-wrap: wrap;
       gap: 8px 24px;
     }
     .chart-source {
@@ -91,7 +90,6 @@
       flex-direction: column;
       gap: 2px;
       min-width: 0;
-      flex: 1 1 auto;
     }
     .chart-wordmark {
       font-family: 'DM Sans', sans-serif;
@@ -100,16 +98,17 @@
       color: #000000;
       letter-spacing: 0.22em;
       white-space: nowrap;
-      flex-shrink: 0;
       text-transform: uppercase;
+      align-self: end;
+      justify-self: end;
     }
   </style>
 </head>
 <body>
   <div class="chart-wrapper">
     <div class="chart-header">
-      <div class="chart-title">Summer captures <b>77%</b> of annual capacity value at <b>$666.50/MW-day</b></div>
-      <div class="chart-subtitle">Seasonal share of PRA capacity revenue, PY 2025-26 North/Central zones</div>
+      <div class="chart-title">Summer captures <b>78%</b> of annual capacity value at <b>$666/MW-day</b></div>
+      <div class="chart-subtitle">Share of total annual capacity revenue by season, PY 2025-26 North/Central zones</div>
     </div>
 
     <div id="plotly-chart"></div>
@@ -117,15 +116,15 @@
     <div class="chart-footer">
       <div class="chart-footer-left">
         <div class="chart-source">Source: MISO, Modo Energy</div>
-        <div class="chart-note">Note: Areas proportional to clearing price x season days. Fall shows North/Central price ($91.60). South cleared at $74.09.</div>
+        <div class="chart-note">Note: Area proportional to each season's share of annual capacity revenue. Fall shows North/Central price ($91.60). South cleared at $74.09.</div>
       </div>
       <div class="chart-wordmark">MODOENERGY</div>
     </div>
   </div>
 
   <script>
-    var chartData = [{"hovertemplate": "<b>%{label}</b><br>Revenue-days: %{value:,.0f}<extra></extra>", "labels": ["Summer<br><b>$666</b>/MW-day<br>78% of annual value", "Fall<br><b>$92</b>/MW-day<br>11%", "Spring<br><b>$70</b>/MW-day<br>8%", "Winter<br><b>$33</b>/MW-day<br>4%"], "marker": {"colors": ["#E03F61", "#E59C58", "#27AC60", "#467EE4"], "line": {"color": "#FFFFFF", "width": 3}}, "parents": ["", "", "", ""], "textfont": {"family": "DM Sans", "size": 16}, "textposition": "middle center", "values": [61318.0, 8335.6, 6428.959999999999, 2988.0000000000005], "type": "treemap"}];
-    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#FFFFFF", "bordercolor": "#E0E0E0", "font": {"color": "#333333", "family": "DM Sans, sans-serif", "size": 13}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 12}, "itemsizing": "constant", "orientation": "h", "traceorder": "normal", "x": 0, "xanchor": "left", "y": 1.01, "yanchor": "bottom"}, "margin": {"b": 40, "l": 8, "pad": 4, "r": 20, "t": 10}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)", "xaxis": {"automargin": true, "showgrid": false, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "tickformat": "%-d %b", "ticks": ""}, "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": "", "zeroline": false}}}, "margin": {"l": 0, "r": 0, "t": 0, "b": 0}};
+    var chartData = [{"type": "treemap", "labels": ["Summer<br><b>$666</b>/MW-day<br>78% of annual value", "Fall<br><b>$92</b>/MW-day<br>11%", "Spring<br><b>$70</b>/MW-day<br>8%", "Winter<br><b>$33</b>/MW-day<br>4%"], "parents": ["", "", "", ""], "values": [61318.0, 8335.6, 6429.0, 2988.0], "marker": {"colors": ["#E03F61", "#E59C58", "#27AC60", "#467EE4"], "line": {"color": "#FFFFFF", "width": 3}}, "textfont": {"family": "DM Sans", "size": 16}, "textposition": "middle center", "hovertemplate": "<b>%{label}</b><extra></extra>"}];
+    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#FFFFFF", "bordercolor": "#E0E0E0", "font": {"color": "#333333", "family": "DM Sans, sans-serif", "size": 13}}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)"}}, "margin": {"l": 0, "r": 0, "t": 0, "b": 0}};
     var chartConfig = {
       displayModeBar: false,
       responsive: true,

@@ -64,12 +64,11 @@
 
     /* === FOOTER === */
     .chart-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
       padding-top: 12px;
       flex-shrink: 0;
-      flex-wrap: wrap;
       gap: 8px 24px;
     }
     .chart-source {
@@ -91,7 +90,6 @@
       flex-direction: column;
       gap: 2px;
       min-width: 0;
-      flex: 1 1 auto;
     }
     .chart-wordmark {
       font-family: 'DM Sans', sans-serif;
@@ -100,8 +98,9 @@
       color: #000000;
       letter-spacing: 0.22em;
       white-space: nowrap;
-      flex-shrink: 0;
       text-transform: uppercase;
+      align-self: end;
+      justify-self: end;
     }
   </style>
 </head>
@@ -117,15 +116,15 @@
     <div class="chart-footer">
       <div class="chart-footer-left">
         <div class="chart-source">Source: MISO, Modo Energy</div>
-        <div class="chart-note">Note: PY 2019-22 are annual auction prices. PY 2023-26 are seasonal averages. PY 2022-23 North/Central price reflects CONE cap of $236.66/MW-day. Background shading shows demand curve regime changes.</div>
+        <div class="chart-note">Note: PY 2019-22 are annual auction prices. PY 2023-26 are seasonal averages. PY 2022-23 North/Central price reflects CONE cap of $236.66/MW-day. Vertical dashed lines mark demand curve regime changes.</div>
       </div>
       <div class="chart-wordmark">MODOENERGY</div>
     </div>
   </div>
 
   <script>
-    var chartData = [{"fill": "tozeroy", "fillcolor": "rgba(111, 95, 229, 0.08)", "hovertemplate": "$%{y:,.1f}/MW-day", "line": {"color": "#6F5FE5", "width": 2.8}, "marker": {"color": "#6F5FE5", "size": 8}, "mode": "lines+markers", "name": "North/Central", "x": [0, 1, 2, 3, 4, 5, 6], "y": [2.99, 5.0, 5.0, 236.66, 9.25, 19.96, 215.3], "type": "scatter"}, {"hovertemplate": "$%{y:,.1f}/MW-day", "line": {"color": "#E59C58", "width": 2.4}, "marker": {"color": "#E59C58", "size": 7}, "mode": "lines+markers", "name": "South", "x": [0, 1, 2, 3, 4, 5, 6], "y": [2.99, 4.74, 0.01, 2.88, 9.25, 19.96, 210.92], "type": "scatter"}];
-    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#FFFFFF", "bordercolor": "#E0E0E0", "font": {"color": "#333333", "family": "DM Sans, sans-serif", "size": 13}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 12}, "itemsizing": "constant", "orientation": "h", "traceorder": "normal", "x": 0, "xanchor": "left", "y": 1.01, "yanchor": "bottom"}, "margin": {"b": 40, "l": 8, "pad": 4, "r": 20, "t": 10}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)", "xaxis": {"automargin": true, "showgrid": false, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "tickformat": "%-d %b", "ticks": ""}, "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": "", "zeroline": false}}}, "shapes": [{"fillcolor": "#81B1FE", "line": {"width": 0}, "opacity": 0.12, "type": "rect", "x0": -0.5, "x1": 3.5, "xref": "x", "y0": 0, "y1": 1, "yref": "y domain"}, {"fillcolor": "#F7C191", "line": {"width": 0}, "opacity": 0.15, "type": "rect", "x0": 3.5, "x1": 5.5, "xref": "x", "y0": 0, "y1": 1, "yref": "y domain"}, {"fillcolor": "#E03F61", "line": {"width": 0}, "opacity": 0.12, "type": "rect", "x0": 5.5, "x1": 6.5, "xref": "x", "y0": 0, "y1": 1, "yref": "y domain"}], "annotations": [{"font": {"color": "#5A6570", "size": 10}, "showarrow": false, "text": "Vertical demand curve", "x": -0.5, "xanchor": "left", "xref": "x", "y": 1, "yanchor": "top", "yref": "y domain"}, {"font": {"color": "#5A6570", "size": 10}, "showarrow": false, "text": "Seasonal auction", "x": 3.5, "xanchor": "left", "xref": "x", "y": 1, "yanchor": "top", "yref": "y domain"}, {"font": {"color": "#5A6570", "size": 10}, "showarrow": false, "text": "RBDC", "x": 5.5, "xanchor": "left", "xref": "x", "y": 1, "yanchor": "top", "yref": "y domain"}, {"arrowcolor": "#5A6570", "arrowhead": 2, "ax": 40, "ay": -40, "font": {"color": "#000000", "size": 11}, "showarrow": true, "text": "N/C hits CONE cap<br><b>$237/MW-day</b>", "x": 3, "y": 236.66}, {"arrowcolor": "#E03F61", "arrowhead": 2, "ax": -50, "ay": -30, "font": {"color": "#E03F61", "size": 12}, "showarrow": true, "text": "22x surge<br><b>$215/MW-day avg</b>", "x": 6, "y": 215.3}], "yaxis": {"tickprefix": "$", "tickformat": ",.0f", "rangemode": "tozero"}, "xaxis": {"tickvals": [0, 1, 2, 3, 4, 5, 6], "ticktext": ["2019", "2020", "2021", "2022", "2023", "2024", "2025"], "type": "linear"}};
+    var chartData = [{"type": "scatter", "mode": "lines+markers", "name": "North/Central", "x": [0, 1, 2, 3, 4, 5, 6], "y": [2.99, 5.0, 5.0, 236.66, 9.25, 19.96, 215.3], "line": {"color": "#6F5FE5", "width": 2.8}, "marker": {"color": "#6F5FE5", "size": 8}, "fill": "tozeroy", "fillcolor": "rgba(111, 95, 229, 0.08)", "hovertemplate": "$%{y:,.1f}/MW-day"}, {"type": "scatter", "mode": "lines+markers", "name": "South", "x": [0, 1, 2, 3, 4, 5, 6], "y": [2.99, 4.74, 0.01, 2.88, 9.25, 19.96, 210.92], "line": {"color": "#E59C58", "width": 2.4}, "marker": {"color": "#E59C58", "size": 7}, "hovertemplate": "$%{y:,.1f}/MW-day"}];
+    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#FFFFFF", "bordercolor": "#E0E0E0", "font": {"color": "#333333", "family": "DM Sans, sans-serif", "size": 13}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 12}, "itemsizing": "constant", "orientation": "h", "traceorder": "normal", "x": 0, "xanchor": "left", "y": 1.01, "yanchor": "bottom"}, "margin": {"b": 40, "l": 8, "pad": 4, "r": 20, "t": 10}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)", "xaxis": {"automargin": true, "showgrid": false, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": ""}, "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": "", "zeroline": false}}}, "shapes": [{"type": "line", "x0": 3.5, "x1": 3.5, "y0": 0, "y1": 1, "yref": "y domain", "line": {"color": "#5A6570", "width": 1.2, "dash": "dash"}}, {"type": "line", "x0": 5.5, "x1": 5.5, "y0": 0, "y1": 1, "yref": "y domain", "line": {"color": "#5A6570", "width": 1.2, "dash": "dash"}}], "annotations": [{"text": "Vertical demand curve", "x": 1.5, "y": 1.0, "yref": "y domain", "xanchor": "center", "yanchor": "bottom", "showarrow": false, "font": {"color": "#5A6570", "size": 10}}, {"text": "Seasonal auction", "x": 4.5, "y": 1.0, "yref": "y domain", "xanchor": "center", "yanchor": "bottom", "showarrow": false, "font": {"color": "#5A6570", "size": 10}}, {"text": "RBDC", "x": 6.0, "y": 1.0, "yref": "y domain", "xanchor": "center", "yanchor": "bottom", "showarrow": false, "font": {"color": "#5A6570", "size": 10}}, {"text": "N/C hits CONE cap<br><b>$237/MW-day</b>", "x": 3, "y": 236.66, "showarrow": true, "arrowcolor": "#000000", "arrowhead": 2, "arrowwidth": 1.5, "ax": -90, "ay": 0, "font": {"color": "#000000", "size": 12}}, {"text": "<b>$215/MW-day</b><br>22x surge from 2019", "x": 6, "y": 215.3, "showarrow": true, "arrowcolor": "#000000", "arrowhead": 2, "arrowwidth": 1.5, "ax": -10, "ay": 70, "font": {"color": "#000000", "size": 12}}], "yaxis": {"tickprefix": "$", "tickformat": ",.0f", "rangemode": "tozero"}, "xaxis": {"tickvals": [0, 1, 2, 3, 4, 5, 6], "ticktext": ["2019", "2020", "2021", "2022", "2023", "2024", "2025"], "type": "linear"}};
     var chartConfig = {
       displayModeBar: false,
       responsive: true,

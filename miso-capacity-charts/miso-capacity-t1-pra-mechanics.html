@@ -64,12 +64,11 @@
 
     /* === FOOTER === */
     .chart-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
       padding-top: 12px;
       flex-shrink: 0;
-      flex-wrap: wrap;
       gap: 8px 24px;
     }
     .chart-source {
@@ -91,7 +90,6 @@
       flex-direction: column;
       gap: 2px;
       min-width: 0;
-      flex: 1 1 auto;
     }
     .chart-wordmark {
       font-family: 'DM Sans', sans-serif;
@@ -100,8 +98,9 @@
       color: #000000;
       letter-spacing: 0.22em;
       white-space: nowrap;
-      flex-shrink: 0;
       text-transform: uppercase;
+      align-self: end;
+      justify-self: end;
     }
   </style>
 </head>
@@ -124,8 +123,8 @@
   </div>
 
   <script>
-    var chartData = [{"cells": {"align": ["left", "left"], "fill": {"color": [["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"], ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"]]}, "font": {"color": "#000000", "family": "DM Sans", "size": 12}, "height": 36, "line": {"color": "#E8E8E8", "width": 1}, "values": [["Auction", "Frequency / timing", "Zones", "Demand curve", "CONE (PY 2025-26)", "Seasonal construct", "ESR eligibility"], ["Planning Resource Auction (PRA). ~90% self-supplied; PRA clears the residual.", "Annual, late March. Results posted ~late April. Planning year starts June 1.", "10 Local Resource Zones: North/Central (LRZ 1-7), South (LRZ 8-10)", "Vertical through PY 2024-25. RBDC (downward-sloping) from PY 2025-26.", "$321 \u2013 $373/MW-day by zone ($117k \u2013 $136k/MW-yr)", "4 equal seasons: Summer (Jun-Aug), Fall (Sep-Nov), Winter (Dec-Feb), Spring (Mar-May)", "Electric Storage Resources since Sep 2022. 4-hour batteries receive 95% capacity credit."]]}, "columnwidth": [1, 3], "header": {"align": ["left", "left"], "fill": {"color": "#F5F5F5"}, "font": {"color": "#000000", "family": "DM Sans", "size": 13}, "height": 40, "line": {"color": "#E8E8E8", "width": 1}, "values": ["<b>Parameter</b>", "<b>Detail</b>"]}, "type": "table"}];
-    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#FFFFFF", "bordercolor": "#E0E0E0", "font": {"color": "#333333", "family": "DM Sans, sans-serif", "size": 13}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 12}, "itemsizing": "constant", "orientation": "h", "traceorder": "normal", "x": 0, "xanchor": "left", "y": 1.01, "yanchor": "bottom"}, "margin": {"b": 40, "l": 8, "pad": 4, "r": 20, "t": 10}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)", "xaxis": {"automargin": true, "showgrid": false, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "tickformat": "%-d %b", "ticks": ""}, "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": "", "zeroline": false}}}, "margin": {"l": 0, "r": 0, "t": 0, "b": 0}, "height": 294};
+    var chartData = [{"type": "table", "columnwidth": [1.2, 3], "header": {"values": ["<b>Parameter</b>", "<b>Detail</b>"], "fill": {"color": "#F5F5F5"}, "font": {"color": "#000000", "family": "DM Sans", "size": 13}, "align": ["left", "left"], "height": 40, "line": {"color": "#E8E8E8", "width": 1}}, "cells": {"values": [["Planning Resource Auction (PRA)", "Frequency and timing", "Zones", "Demand curve", "CONE (PY 2025-26)", "Seasonal construct", "ESR eligibility"], ["~90% of capacity is self-supplied; the PRA clears the residual.", "Annual, late March. Results posted ~late April. Planning year starts June 1.", "10 Local Resource Zones: North/Central (LRZ 1-7), South (LRZ 8-10)", "Vertical through PY 2024-25. RBDC (downward-sloping) from PY 2025-26.", "$321 \u2013 $373/MW-day by zone ($117k \u2013 $136k/MW-yr)", "4 equal seasons: Summer (Jun-Aug), Fall (Sep-Nov), Winter (Dec-Feb), Spring (Mar-May)", "Electric Storage Resources since Sep 2022. 4-hour batteries receive 95% capacity credit."]], "fill": {"color": [["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"], ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"]]}, "font": {"color": "#000000", "family": "DM Sans", "size": 12}, "align": ["left", "left"], "height": 36, "line": {"color": "#E8E8E8", "width": 1}}}];
+    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 13}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)"}}, "margin": {"l": 0, "r": 0, "t": 0, "b": 0}, "height": 294};
     var chartConfig = {
       displayModeBar: false,
       responsive: true,

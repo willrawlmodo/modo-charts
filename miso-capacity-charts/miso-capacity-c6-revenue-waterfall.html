@@ -64,12 +64,11 @@
 
     /* === FOOTER === */
     .chart-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
       padding-top: 12px;
       flex-shrink: 0;
-      flex-wrap: wrap;
       gap: 8px 24px;
     }
     .chart-source {
@@ -91,7 +90,6 @@
       flex-direction: column;
       gap: 2px;
       min-width: 0;
-      flex: 1 1 auto;
     }
     .chart-wordmark {
       font-family: 'DM Sans', sans-serif;
@@ -100,8 +98,9 @@
       color: #000000;
       letter-spacing: 0.22em;
       white-space: nowrap;
-      flex-shrink: 0;
       text-transform: uppercase;
+      align-self: end;
+      justify-self: end;
     }
   </style>
 </head>
@@ -117,15 +116,15 @@
     <div class="chart-footer">
       <div class="chart-footer-left">
         <div class="chart-source">Source: MISO PRA Results, Modo Energy</div>
-        <div class="chart-note">Note: Calculated as clearing price x season days x 0.95 capacity credit. Summer = 77% of total. Duration beyond 4 hours adds no incremental capacity revenue in MISO.</div>
+        <div class="chart-note">Note: Calculated as clearing price × season days × 0.95 capacity credit. Duration beyond 4 hours adds no incremental capacity revenue in MISO.</div>
       </div>
       <div class="chart-wordmark">MODOENERGY</div>
     </div>
   </div>
 
   <script>
-    var chartData = [{"connector": {"line": {"color": "#D0D0D0", "dash": "dot", "width": 1}}, "hovertemplate": "$%{y:,.0f}/kW-yr<extra></extra>", "increasing": {"marker": {"color": "#E03F61", "line": {"color": "#FFFFFF", "width": 0.5}}}, "measure": ["relative", "relative", "relative", "relative", "total"], "text": ["$58", "$8", "$3", "$6", "$75"], "textfont": {"color": "#000000", "family": "DM Sans", "size": 13}, "textposition": "outside", "totals": {"marker": {"color": "#6F5FE5", "line": {"color": "#FFFFFF", "width": 0.5}}}, "x": ["Summer", "Fall", "Winter", "Spring", "Total"], "y": [58.2521, 7.918819999999999, 2.8386000000000005, 6.107511999999999, 75.117032], "type": "waterfall"}];
-    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#FFFFFF", "bordercolor": "#E0E0E0", "font": {"color": "#333333", "family": "DM Sans, sans-serif", "size": 13}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 12}, "itemsizing": "constant", "orientation": "h", "traceorder": "normal", "x": 0, "xanchor": "left", "y": 1.01, "yanchor": "bottom"}, "margin": {"b": 40, "l": 8, "pad": 4, "r": 20, "t": 10}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)", "xaxis": {"automargin": true, "showgrid": false, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "tickformat": "%-d %b", "ticks": ""}, "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": "", "zeroline": false}}}, "annotations": [{"font": {"color": "#FFFFFF", "size": 11}, "showarrow": false, "text": "78%", "x": "Summer", "y": 58.2521, "yshift": -15}, {"font": {"color": "#FFFFFF", "size": 11}, "showarrow": false, "text": "11%", "x": "Fall", "y": 66.17092, "yshift": -15}, {"font": {"color": "#FFFFFF", "size": 11}, "showarrow": false, "text": "4%", "x": "Winter", "y": 69.00952, "yshift": -15}, {"font": {"color": "#FFFFFF", "size": 11}, "showarrow": false, "text": "8%", "x": "Spring", "y": 75.117032, "yshift": -15}], "yaxis": {"tickprefix": "$", "tickformat": ",.0f", "ticksuffix": "/kW-yr", "rangemode": "tozero"}, "xaxis": {"type": "category"}};
+    var chartData = [{"type": "waterfall", "x": ["Summer", "Fall", "Winter", "Spring", "Total"], "y": [58.25, 7.92, 2.84, 6.11, 75.12], "measure": ["relative", "relative", "relative", "relative", "total"], "text": ["$58/kW-yr", "$8/kW-yr", "$3/kW-yr", "$6/kW-yr", "<b>$75/kW-yr</b>"], "textfont": {"color": "#000000", "family": "DM Sans", "size": 13}, "textposition": "outside", "connector": {"line": {"color": "#D0D0D0", "dash": "dot", "width": 1}}, "increasing": {"marker": {"color": "#E59C58", "line": {"color": "#333333", "width": 0.4}}}, "totals": {"marker": {"color": "#6F5FE5", "line": {"color": "#333333", "width": 0.8}}}, "customdata": ["78% of annual", "11% of annual", "4% of annual", "8% of annual", "All seasons combined"], "hovertemplate": "<b>%{x}</b><br>$%{y:,.0f}/kW-yr<br>%{customdata}<extra></extra>"}];
+    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#FFFFFF", "bordercolor": "#E0E0E0", "font": {"color": "#333333", "family": "DM Sans, sans-serif", "size": 13}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 12}, "itemsizing": "constant", "orientation": "h", "traceorder": "normal", "x": 0, "xanchor": "left", "y": 1.01, "yanchor": "bottom"}, "margin": {"b": 40, "l": 8, "pad": 4, "r": 20, "t": 10}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)", "xaxis": {"automargin": true, "showgrid": false, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": ""}, "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": "", "zeroline": false}}}, "hovermode": "closest", "yaxis": {"tickprefix": "$", "tickformat": ",.0f", "rangemode": "tozero"}, "xaxis": {"type": "category"}};
     var chartConfig = {
       displayModeBar: false,
       responsive: true,

@@ -64,12 +64,11 @@
 
     /* === FOOTER === */
     .chart-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
       padding-top: 12px;
       flex-shrink: 0;
-      flex-wrap: wrap;
       gap: 8px 24px;
     }
     .chart-source {
@@ -91,7 +90,6 @@
       flex-direction: column;
       gap: 2px;
       min-width: 0;
-      flex: 1 1 auto;
     }
     .chart-wordmark {
       font-family: 'DM Sans', sans-serif;
@@ -100,8 +98,9 @@
       color: #000000;
       letter-spacing: 0.22em;
       white-space: nowrap;
-      flex-shrink: 0;
       text-transform: uppercase;
+      align-self: end;
+      justify-self: end;
     }
   </style>
 </head>
@@ -117,15 +116,15 @@
     <div class="chart-footer">
       <div class="chart-footer-left">
         <div class="chart-source">Source: MISO, PJM, NYISO, Modo Energy</div>
-        <div class="chart-note">Note: MISO shows PY annualized average. PJM shows BRA RTO clearing price. NYISO shows NYCA annual spot average. MISO's near-vertical slope reflects the 22x summer price surge under the new RBDC.</div>
+        <div class="chart-note">Note: MISO shows PY annualized average. PJM shows BRA RTO clearing price. NYISO shows NYCA annual spot average.</div>
       </div>
       <div class="chart-wordmark">MODOENERGY</div>
     </div>
   </div>
 
   <script>
-    var chartData = [{"hoverinfo": "skip", "line": {"color": "#6F5FE5", "width": 3.5}, "mode": "lines", "showlegend": false, "x": [0, 1], "y": [5.0, 215.25], "type": "scatter"}, {"hovertemplate": "MISO (2021): $5/MW-day<extra></extra>", "marker": {"color": "#6F5FE5", "line": {"color": "#FFFFFF", "width": 2}, "size": 12}, "mode": "markers+text", "showlegend": false, "text": ["MISO  $5"], "textfont": {"color": "#6F5FE5", "family": "DM Sans", "size": 13}, "textposition": "middle left", "x": [0], "y": [5.0], "type": "scatter"}, {"hovertemplate": "MISO (2025): $215/MW-day<extra></extra>", "marker": {"color": "#6F5FE5", "line": {"color": "#FFFFFF", "width": 2}, "size": 12}, "mode": "markers+text", "showlegend": false, "text": ["$215  MISO"], "textfont": {"color": "#6F5FE5", "family": "DM Sans", "size": 13}, "textposition": "middle right", "x": [1], "y": [215.25], "type": "scatter"}, {"hoverinfo": "skip", "line": {"color": "#E03F61", "width": 2.4}, "mode": "lines", "showlegend": false, "x": [0, 1], "y": [140.0, 333.44], "type": "scatter"}, {"hovertemplate": "PJM (2021): $140/MW-day<extra></extra>", "marker": {"color": "#E03F61", "line": {"color": "#FFFFFF", "width": 2}, "size": 12}, "mode": "markers+text", "showlegend": false, "text": ["PJM  $140"], "textfont": {"color": "#E03F61", "family": "DM Sans", "size": 13}, "textposition": "middle left", "x": [0], "y": [140.0], "type": "scatter"}, {"hovertemplate": "PJM (2025): $333/MW-day<extra></extra>", "marker": {"color": "#E03F61", "line": {"color": "#FFFFFF", "width": 2}, "size": 12}, "mode": "markers+text", "showlegend": false, "text": ["$333  PJM"], "textfont": {"color": "#E03F61", "family": "DM Sans", "size": 13}, "textposition": "middle right", "x": [1], "y": [333.44], "type": "scatter"}, {"hoverinfo": "skip", "line": {"color": "#E59C58", "width": 2.4}, "mode": "lines", "showlegend": false, "x": [0, 1], "y": [103.56, 133.81], "type": "scatter"}, {"hovertemplate": "NYISO (2021): $104/MW-day<extra></extra>", "marker": {"color": "#E59C58", "line": {"color": "#FFFFFF", "width": 2}, "size": 12}, "mode": "markers+text", "showlegend": false, "text": ["NYISO  $104"], "textfont": {"color": "#E59C58", "family": "DM Sans", "size": 13}, "textposition": "middle left", "x": [0], "y": [103.56], "type": "scatter"}, {"hovertemplate": "NYISO (2025): $134/MW-day<extra></extra>", "marker": {"color": "#E59C58", "line": {"color": "#FFFFFF", "width": 2}, "size": 12}, "mode": "markers+text", "showlegend": false, "text": ["$134  NYISO"], "textfont": {"color": "#E59C58", "family": "DM Sans", "size": 13}, "textposition": "middle right", "x": [1], "y": [133.81], "type": "scatter"}];
-    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#FFFFFF", "bordercolor": "#E0E0E0", "font": {"color": "#333333", "family": "DM Sans, sans-serif", "size": 13}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 12}, "itemsizing": "constant", "orientation": "h", "traceorder": "normal", "x": 0, "xanchor": "left", "y": 1.01, "yanchor": "bottom"}, "margin": {"b": 40, "l": 8, "pad": 4, "r": 20, "t": 10}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)", "xaxis": {"automargin": true, "showgrid": false, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "tickformat": "%-d %b", "ticks": ""}, "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": "", "zeroline": false}}}, "annotations": [{"font": {"color": "#6F5FE5", "size": 18}, "showarrow": false, "text": "<b>43x</b>", "x": 0.5, "y": 110.0}], "xaxis": {"tickvals": [0, 1], "ticktext": ["2021-22", "2025-26"], "range": [-0.35, 1.35], "showgrid": false}, "yaxis": {"tickprefix": "$", "tickformat": ",.0f", "rangemode": "tozero", "showgrid": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25}, "margin": {"l": 80, "r": 80, "t": 10, "b": 40}};
+    var chartData = [{"type": "scatter", "mode": "lines+markers+text", "name": "MISO", "x": ["PY 2021-22", "PY 2025-26"], "y": [5.0, 215.25], "line": {"color": "#6F5FE5", "width": 3}, "marker": {"color": "#6F5FE5", "size": 12, "line": {"color": "#FFFFFF", "width": 2}}, "text": ["$5", "$215"], "textfont": {"color": "#6F5FE5", "family": "DM Sans", "size": 13}, "textposition": ["middle left", "middle right"], "hovertemplate": "MISO: $%{y:,.0f}/MW-day<extra></extra>"}, {"type": "scatter", "mode": "lines+markers+text", "name": "PJM", "x": ["PY 2021-22", "PY 2025-26"], "y": [140.0, 333.44], "line": {"color": "#E03F61", "width": 2.4}, "marker": {"color": "#E03F61", "size": 12, "line": {"color": "#FFFFFF", "width": 2}}, "text": ["$140", "$333"], "textfont": {"color": "#E03F61", "family": "DM Sans", "size": 13}, "textposition": ["middle left", "middle right"], "hovertemplate": "PJM: $%{y:,.0f}/MW-day<extra></extra>"}, {"type": "scatter", "mode": "lines+markers+text", "name": "NYISO", "x": ["PY 2021-22", "PY 2025-26"], "y": [103.56, 133.81], "line": {"color": "#E59C58", "width": 2.4}, "marker": {"color": "#E59C58", "size": 12, "line": {"color": "#FFFFFF", "width": 2}}, "text": ["$104", "$134"], "textfont": {"color": "#E59C58", "family": "DM Sans", "size": 13}, "textposition": ["middle left", "middle right"], "hovertemplate": "NYISO: $%{y:,.0f}/MW-day<extra></extra>"}];
+    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#FFFFFF", "bordercolor": "#E0E0E0", "font": {"color": "#333333", "family": "DM Sans, sans-serif", "size": 13}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 12}, "itemsizing": "constant", "orientation": "h", "traceorder": "normal", "x": 0, "xanchor": "left", "y": 1.01, "yanchor": "bottom"}, "margin": {"b": 40, "l": 8, "pad": 4, "r": 20, "t": 10}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)", "xaxis": {"automargin": true, "showgrid": false, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": ""}, "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": "", "zeroline": false}}}, "hovermode": "closest", "showlegend": false, "xaxis": {"type": "category", "showgrid": false}, "yaxis": {"tickprefix": "$", "tickformat": ",.0f", "range": [-10, 370], "showgrid": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25}, "margin": {"l": 55, "r": 55, "t": 10, "b": 40}};
     var chartConfig = {
       displayModeBar: false,
       responsive: true,
