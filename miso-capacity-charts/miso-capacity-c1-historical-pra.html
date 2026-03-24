@@ -17,7 +17,7 @@
     body {
       width: 100%;
       min-height: 100%;
-      overflow-x: hidden;
+      overflow-x: visible;
       font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #FFFFFF;
       color: #333333;
@@ -61,6 +61,8 @@
       min-height: 0;
       width: 100%;
     }
+    #plotly-chart .main-svg { overflow: visible !important; }
+    .js-plotly-plot .plotly .main-svg { overflow: visible !important; }
 
     /* === FOOTER === */
     .chart-footer {
