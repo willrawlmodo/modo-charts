@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A 4-hour BESS earns $75/kW-year from MISO capacity alone</title>
+  <title>MISO gives 4-hour batteries a 95% capacity credit, the highest in any US ISO</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -107,25 +107,26 @@
 <body>
   <div class="chart-wrapper">
     <div class="chart-header">
-      <div class="chart-title">A 4-hour BESS earns $75/kW-year from MISO capacity alone</div>
-      <div class="chart-subtitle">Seasonal BESS capacity revenue ($/kW-year)</div>
+      <div class="chart-title"><b style="color:#6F5FE5">MISO</b> gives 4-hour batteries a 95% capacity credit, the highest in any US ISO</div>
+      <div class="chart-subtitle">BESS capacity credit by duration and ISO (% of nameplate)</div>
     </div>
 
     <div id="plotly-chart"></div>
 
     <div class="chart-footer">
       <div class="chart-footer-left">
-        <div class="chart-source">Source: MISO PRA Results, Modo Energy</div>
-        <div class="chart-note">Note: Calculated as clearing price × season days × 0.95 capacity credit. Duration beyond 4 hours adds no incremental capacity revenue in MISO.</div>
+        <div class="chart-source">Source: MISO BPM-011, PJM, NYISO, NESO, Modo Energy</div>
+        <div class="chart-note">Note: MISO's flat 95% means duration beyond 4 hours adds zero incremental credit. PJM uses marginal ELCC, NYISO uses zonal CAF, GB uses scaled EFC.</div>
       </div>
       <div class="chart-wordmark">MODOENERGY</div>
     </div>
   </div>
 
   <script>
-    var chartData = [{"type": "waterfall", "x": ["Summer", "Fall", "Winter", "Spring", "Total"], "y": [58.25, 7.92, 2.84, 6.11, 75.12], "measure": ["relative", "relative", "relative", "relative", "total"], "connector": {"line": {"color": "#D0D0D0", "dash": "dot", "width": 1}}, "increasing": {"marker": {"color": "#E59C58", "line": {"color": "#333333", "width": 0.4}}}, "totals": {"marker": {"color": "#6F5FE5", "line": {"color": "#333333", "width": 0.8}}}, "customdata": ["78% of annual", "11% of annual", "4% of annual", "8% of annual", "All seasons combined"], "hovertemplate": "<b>%{x}</b><br>$%{y:,.0f}/kW-yr<br>%{customdata}<extra></extra>"}];
-    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#FFFFFF", "bordercolor": "#E0E0E0", "font": {"color": "#333333", "family": "DM Sans, sans-serif", "size": 13}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 12}, "itemsizing": "constant", "orientation": "h", "traceorder": "normal", "x": 0, "xanchor": "left", "y": 1.01, "yanchor": "bottom"}, "margin": {"b": 40, "l": 8, "pad": 4, "r": 20, "t": 10}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)", "xaxis": {"automargin": true, "showgrid": false, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": ""}, "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": "", "zeroline": false}}}, "hovermode": "closest", "yaxis": {"tickprefix": "$", "tickformat": ",.0f", "rangemode": "tozero"}, "xaxis": {"type": "category"}};
+    var chartData = [{"type": "bar", "orientation": "h", "name": "4-hour battery", "y": ["GB (T-4)", "PJM", "NYISO (ROS)", "NYISO (NYC)", "NYISO (LI)", "MISO"], "x": [42.0, 58.0, 78.91, 78.53, 87.1, 95.0], "marker": {"color": ["#467EE4", "#467EE4", "#467EE4", "#467EE4", "#467EE4", "#6F5FE5"], "line": {"color": "#333333", "width": 0.4}}, "hovertemplate": "%{y}: %{x:.1f}% (4-hour)<extra></extra>"}, {"type": "bar", "orientation": "h", "name": "8-hour battery", "y": ["GB (T-4)", "PJM", "NYISO (ROS)", "NYISO (NYC)", "NYISO (LI)", "MISO"], "x": [85.0, 70.0, 96.77, 96.12, 98.96, 95.0], "marker": {"color": ["#81B1FE", "#81B1FE", "#81B1FE", "#81B1FE", "#81B1FE", "#A074FB"], "line": {"color": "#333333", "width": 0.4}}, "hovertemplate": "%{y}: %{x:.1f}% (8-hour)<extra></extra>"}];
+    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#FFFFFF", "bordercolor": "#E0E0E0", "font": {"color": "#333333", "family": "DM Sans, sans-serif", "size": 13}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 12}, "itemsizing": "constant", "orientation": "h", "traceorder": "normal", "x": 0, "xanchor": "left", "y": 1.01, "yanchor": "bottom"}, "margin": {"b": 40, "l": 8, "pad": 4, "r": 20, "t": 10}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)", "xaxis": {"automargin": true, "showgrid": false, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": ""}, "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": "", "zeroline": false}}}, "barmode": "group", "bargroupgap": 0.15, "bargap": 0.25, "xaxis": {"ticksuffix": "%", "range": [0, 105], "dtick": 20}, "yaxis": {"type": "category", "categoryorder": "array", "categoryarray": ["GB (T-4)", "PJM", "NYISO (ROS)", "NYISO (NYC)", "NYISO (LI)", "MISO"]}, "margin": {"l": 100, "r": 50, "t": 30, "b": 40}, "legend": {"y": 1.08}};
     chartLayout.dragmode = false;
+    chartLayout.hovermode = "closest";
     var chartConfig = {
       displayModeBar: false,
       responsive: true,

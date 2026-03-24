@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MISO's capacity surplus fell 60% in three years to 2.6 GW</title>
+  <title>Summer captures 78% of annual capacity value at $666/MW-day</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -107,24 +107,24 @@
 <body>
   <div class="chart-wrapper">
     <div class="chart-header">
-      <div class="chart-title">MISO's capacity surplus fell 60% in three years to 2.6 GW</div>
-      <div class="chart-subtitle">System surplus above Planning Reserve Margin Requirement (GW)</div>
+      <div class="chart-title"><b style="color:#E03F61">Summer</b> captures 78% of annual capacity value at $666/MW-day</div>
+      <div class="chart-subtitle">Seasonal capacity revenue share, PY 2025-26 North/Central ($/MW-day)</div>
     </div>
 
     <div id="plotly-chart"></div>
 
     <div class="chart-footer">
       <div class="chart-footer-left">
-        <div class="chart-source">Source: Potomac Economics, MISO, Enel North America, Modo Energy</div>
-        <div class="chart-note">Note: PY 2022-23 shows a 1.2 GW net deficit in North/Central zones. Dashed line projects same annual decline rate.</div>
+        <div class="chart-source">Source: MISO, Modo Energy</div>
+        <div class="chart-note">Note: Area proportional to each season's share of annual capacity revenue. Fall shows North/Central price ($91.60), South cleared at $74.09.</div>
       </div>
       <div class="chart-wordmark">MODOENERGY</div>
     </div>
   </div>
 
   <script>
-    var chartData = [{"type": "bar", "name": "Surplus / (Deficit)", "x": ["2020-21", "2021-22", "2022-23", "2023-24", "2024-25", "2025-26"], "y": [2.1, 2.9, -1.2, 6.5, 4.6, 2.6], "marker": {"color": ["#6F5FE5", "#6F5FE5", "#E03F61", "#6F5FE5", "#6F5FE5", "#6F5FE5"], "line": {"color": "#333333", "width": 0.8}}, "hovertemplate": "%{x}: %{y:,.1f} GW<extra></extra>"}, {"type": "scatter", "mode": "lines+markers", "name": "Projected (same decline rate)", "x": ["2025-26", "2026-27"], "y": [2.6, 0.6], "line": {"color": "#000000", "dash": "dash", "width": 2}, "marker": {"color": "#000000", "size": 10, "symbol": "diamond"}, "hovertemplate": "Projected %{x}: %{y:,.1f} GW<extra></extra>"}];
-    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#FFFFFF", "bordercolor": "#E0E0E0", "font": {"color": "#333333", "family": "DM Sans, sans-serif", "size": 13}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 12}, "itemsizing": "constant", "orientation": "h", "traceorder": "normal", "x": 0, "xanchor": "left", "y": 1.01, "yanchor": "bottom"}, "margin": {"b": 40, "l": 8, "pad": 4, "r": 20, "t": 10}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)", "xaxis": {"automargin": true, "showgrid": false, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": ""}, "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": "", "zeroline": false}}}, "shapes": [{"type": "line", "x0": 0, "x1": 1, "xref": "x domain", "y0": 0, "y1": 0, "yref": "y", "line": {"color": "#000000", "width": 1.5}}], "annotations": [{"text": "Deficit threshold", "x": 1, "xanchor": "right", "xref": "x domain", "y": 0, "yanchor": "top", "yref": "y", "showarrow": false, "font": {"color": "#000000", "size": 11}}], "yaxis": {"ticksuffix": " GW", "range": [-2.2, 8.5]}, "xaxis": {"type": "category"}};
+    var chartData = [{"type": "treemap", "labels": ["Summer<br><b>$666</b>/MW-day<br>78% of annual value", "Fall<br><b>$92</b>/MW-day<br>11%", "Spring<br><b>$70</b>/MW-day<br>8%", "Winter<br><b>$33</b>/MW-day<br>4%"], "parents": ["", "", "", ""], "values": [61318.0, 8335.6, 6429.0, 2988.0], "marker": {"colors": ["#E03F61", "#E59C58", "#27AC60", "#467EE4"], "line": {"color": "#FFFFFF", "width": 3}}, "textfont": {"family": "DM Sans", "size": 14}, "textposition": "middle center", "hovertemplate": "<b>%{label}</b><extra></extra>"}];
+    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#FFFFFF", "bordercolor": "#E0E0E0", "font": {"color": "#333333", "family": "DM Sans, sans-serif", "size": 13}}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)"}}, "margin": {"l": 0, "r": 0, "t": 0, "b": 0}, "height": 380};
     chartLayout.dragmode = false;
     var chartConfig = {
       displayModeBar: false,
@@ -134,6 +134,11 @@
       doubleClick: false
     };
     Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig);
+
+    // Disable treemap click drill-down (no sub-layers) while keeping hover tooltips
+    var plotEl = document.getElementById('plotly-chart');
+    plotEl.on('plotly_treemapclick', function() { return false; });
+    plotEl.on('plotly_sunburstclick', function() { return false; });
 
     window.addEventListener('resize', function() {
       Plotly.Plots.resize('plotly-chart');
