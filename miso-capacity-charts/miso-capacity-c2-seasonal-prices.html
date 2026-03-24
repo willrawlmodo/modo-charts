@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Summer captures <b>78%</b> of annual capacity value at <b>$666/MW-day</b></title>
+  <title>Summer captures 78% of annual capacity value at $666/MW-day</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -107,8 +107,8 @@
 <body>
   <div class="chart-wrapper">
     <div class="chart-header">
-      <div class="chart-title">Summer captures <b>78%</b> of annual capacity value at <b>$666/MW-day</b></div>
-      <div class="chart-subtitle">Share of total annual capacity revenue by season, PY 2025-26 North/Central zones</div>
+      <div class="chart-title"><b style="color:#E03F61">Summer</b> captures 78% of annual capacity value at $666/MW-day</div>
+      <div class="chart-subtitle">Seasonal capacity revenue share, PY 2025-26 North/Central ($/MW-day)</div>
     </div>
 
     <div id="plotly-chart"></div>
@@ -116,7 +116,7 @@
     <div class="chart-footer">
       <div class="chart-footer-left">
         <div class="chart-source">Source: MISO, Modo Energy</div>
-        <div class="chart-note">Note: Area proportional to each season's share of annual capacity revenue. Fall shows North/Central price ($91.60). South cleared at $74.09.</div>
+        <div class="chart-note">Note: Area proportional to each season's share of annual capacity revenue. Fall shows North/Central price ($91.60), South cleared at $74.09.</div>
       </div>
       <div class="chart-wordmark">MODOENERGY</div>
     </div>
@@ -125,12 +125,20 @@
   <script>
     var chartData = [{"type": "treemap", "labels": ["Summer<br><b>$666</b>/MW-day<br>78% of annual value", "Fall<br><b>$92</b>/MW-day<br>11%", "Spring<br><b>$70</b>/MW-day<br>8%", "Winter<br><b>$33</b>/MW-day<br>4%"], "parents": ["", "", "", ""], "values": [61318.0, 8335.6, 6429.0, 2988.0], "marker": {"colors": ["#E03F61", "#E59C58", "#27AC60", "#467EE4"], "line": {"color": "#FFFFFF", "width": 3}}, "textfont": {"family": "DM Sans", "size": 16}, "textposition": "middle center", "hovertemplate": "<b>%{label}</b><extra></extra>"}];
     var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#FFFFFF", "bordercolor": "#E0E0E0", "font": {"color": "#333333", "family": "DM Sans, sans-serif", "size": 13}}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)"}}, "margin": {"l": 0, "r": 0, "t": 0, "b": 0}};
+    chartLayout.dragmode = false;
     var chartConfig = {
       displayModeBar: false,
       responsive: true,
-      staticPlot: false
+      staticPlot: false,
+      scrollZoom: false,
+      doubleClick: false
     };
     Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig);
+
+    // Disable treemap click drill-down (no sub-layers) while keeping hover tooltips
+    var plotEl = document.getElementById('plotly-chart');
+    plotEl.on('plotly_treemapclick', function() { return false; });
+    plotEl.on('plotly_sunburstclick', function() { return false; });
 
     window.addEventListener('resize', function() {
       Plotly.Plots.resize('plotly-chart');
