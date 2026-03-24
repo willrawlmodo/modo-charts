@@ -123,8 +123,8 @@
   </div>
 
   <script>
-    var chartData = [{"type": "waterfall", "x": ["Summer", "Fall", "Winter", "Spring", "Total"], "y": [58.25, 7.92, 2.84, 6.11, 75.12], "measure": ["relative", "relative", "relative", "relative", "total"], "connector": {"line": {"color": "#D0D0D0", "dash": "dot", "width": 1}}, "marker": {"color": ["#E03F61", "#E59C58", "#467EE4", "#F7C191", "#6F5FE5"], "line": {"color": "#333333", "width": 1.0}}, "increasing": {"marker": {"color": "#E03F61", "line": {"color": "#333333", "width": 1.0}}}, "totals": {"marker": {"color": "#6F5FE5", "line": {"color": "#333333", "width": 1.0}}}, "customdata": ["78% of annual", "11% of annual", "4% of annual", "8% of annual", "All seasons combined"], "hovertemplate": "<b>%{x}</b><br>$%{y:,.0f}/kW-yr<br>%{customdata}<extra></extra>"}];
-    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#FFFFFF", "bordercolor": "#E0E0E0", "font": {"color": "#333333", "family": "DM Sans, sans-serif", "size": 13}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 12}, "itemsizing": "constant", "orientation": "h", "traceorder": "normal", "x": 0, "xanchor": "left", "y": 1.01, "yanchor": "bottom"}, "margin": {"b": 40, "l": 8, "pad": 4, "r": 20, "t": 10}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)", "xaxis": {"automargin": true, "showgrid": false, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": ""}, "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": "", "zeroline": false}}}, "hovermode": "closest", "yaxis": {"tickprefix": "$", "tickformat": ",.0f", "rangemode": "tozero"}, "xaxis": {"type": "category"}};
+    var chartData = [{"type": "waterfall", "x": ["Summer", "Fall", "Winter", "Spring", "Total"], "y": [58.25, 7.92, 2.84, 6.11, 75.12], "measure": ["relative", "relative", "relative", "relative", "total"], "connector": {"line": {"color": "#D0D0D0", "dash": "dot", "width": 1}}, "marker": {"color": ["#E8DAFE", "#C5AAFD", "#A074FB", "#8353E8", "#6F5FE5"], "line": {"color": "#333333", "width": 1.0}}, "increasing": {"marker": {"color": "#E8DAFE", "line": {"color": "#333333", "width": 1.0}}}, "totals": {"marker": {"color": "#7B55D0", "line": {"color": "#333333", "width": 1.0}}}, "customdata": ["78% of annual", "11% of annual", "4% of annual", "8% of annual", "All seasons combined"], "hovertemplate": "<b>%{x}</b><br>$%{y:,.0f}/kW-yr<br>%{customdata}<extra></extra>"}];
+    var chartLayout = {"template": {"layout": {"colorway": ["#6F5FE5", "#E03F61", "#E59C58", "#467EE4", "#FFE300", "#27AC60", "#A074FB", "#F7C191", "#6CDD9C", "#C5AAFD"], "font": {"color": "#5A6570", "family": "DM Sans, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#FFFFFF", "bordercolor": "#E0E0E0", "font": {"color": "#333333", "family": "DM Sans, sans-serif", "size": 13}}, "hovermode": "x unified", "legend": {"bgcolor": "rgba(0,0,0,0)", "borderwidth": 0, "font": {"color": "#5A6570", "size": 12}, "itemsizing": "constant", "orientation": "h", "traceorder": "normal", "x": 0, "xanchor": "left", "y": 1.01, "yanchor": "bottom"}, "margin": {"b": 40, "l": 8, "pad": 4, "r": 20, "t": 10}, "paper_bgcolor": "rgba(0,0,0,0)", "plot_bgcolor": "rgba(0,0,0,0)", "xaxis": {"automargin": true, "showgrid": false, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": ""}, "yaxis": {"automargin": true, "gridcolor": "#F9F9F9", "gridwidth": 0.25, "separatethousands": true, "showgrid": true, "showline": false, "tickcolor": "rgba(0,0,0,0)", "tickfont": {"color": "#5A6570", "size": 13}, "ticks": "", "zeroline": false}}}, "hovermode": "closest", "yaxis": {"tickprefix": "$", "tickformat": ",.0f", "rangemode": "tozero"}, "xaxis": {"type": "category"}, "shapes": [{"type": "line", "x0": -0.4, "x1": 0.4, "y0": 0, "y1": 0, "xref": "x", "yref": "y", "line": {"color": "#333333", "width": 1.0}}]};
     chartLayout.dragmode = false;
     var chartConfig = {
       displayModeBar: false,
@@ -133,7 +133,21 @@
       scrollZoom: false,
       doubleClick: false
     };
-    Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig);
+    Plotly.newPlot('plotly-chart', chartData, chartLayout, chartConfig).then(function() {
+      var colors = ['#D4C4F8', '#C0AAEF', '#A88DE5', '#9070DB', '#7B55D0'];
+      // Try multiple selectors since Plotly's SVG structure varies
+      var rects = document.querySelectorAll('#plotly-chart path.point');
+      if (rects.length === 0) rects = document.querySelectorAll('#plotly-chart .waterfallayer path');
+      if (rects.length === 0) rects = document.querySelectorAll('#plotly-chart .trace path');
+      console.log('Found ' + rects.length + ' bar elements');
+      rects.forEach(function(r, i) {
+        if (i < colors.length) {
+          r.style.fill = colors[i];
+          r.setAttribute('fill', colors[i]);
+          r.style.setProperty('fill', colors[i], 'important');
+        }
+      });
+    });
 
     window.addEventListener('resize', function() {
       Plotly.Plots.resize('plotly-chart');
